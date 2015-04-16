@@ -5,7 +5,7 @@
 <?php
 
 function test1() {
-
+	echo "Hello";
 }
 
 function test2() {
