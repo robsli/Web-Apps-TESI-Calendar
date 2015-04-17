@@ -1,6 +1,6 @@
 <!-- Web Applications Project
   --
-  -- Contributors: Robbie Li, Ayako Mikami, Jonathan Ho (I hate my life)
+  -- Contributors: Robbie Li, Ayako Mikami, Jonathan Ho
   --
   -- index.php
   -->
