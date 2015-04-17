@@ -56,7 +56,7 @@
 	
 		<label for ='school'>School</label>
 		<select name="school" id ="school"><?php
-			//echo "<option value=0 selected>Select one</option>";
+			echo "<option value=0 selected>Select one</option>";
 			$count = 1;
 			foreach ($collegeMajorArray as $school => $major){
       			echo "<option value=$count>$school</option>";
@@ -67,7 +67,7 @@
 		
 		<label for ='major'>Major</label>
 		<select name="major" id ="major"><?php
-			//echo "<option value=0> </option>";
+			echo "<option value=0> </option>";
 			$count = 1;
 			foreach ($collegeMajorArray as $school => $major){
 				$majorArray = explode(",",$major);
