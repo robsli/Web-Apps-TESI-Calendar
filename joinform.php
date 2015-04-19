@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>TESI</title>
   <script src="jquery-1.11.2.min.js"></script>
-  <!--<script type="text/javascript" src="myscripts.js"></script>-->
+  <script type="text/javascript" src="joinscript.js"></script>
 </head>
 <body>
 <?php
@@ -36,74 +36,71 @@
 		$classArray = array("2015","2016","2017","2018");
 		?>
 		
-	<form method = "post" action="../include/locationoperation.php" onsubmit="return validate();">
+	<form method = "post" action="joinoperation.php" onsubmit="return validate();">
+		<?php 
+		textInput("firstname","First Name");
+		textInput("lastname","Last Name"); 
+		textInput("email","Email"); 
+		textInput("password","Password"); 
+		textInput("confirmpassword","Confirm Password");   		
+		?>
 
-		<label for='name'>First Name </label>
-		<input type = 'text' name = 'firstname' id='firstname' />
-		<article id="firstnameerror"></article><br>
-		
-		<label for='name'>Last Name </label>
-		<input type = 'text' name = 'lastname' id='lastname' />
-		<article id="lastnameerror"></article><br>
-		
-		<label for ='category'>Email </label>
-		<input type = 'text' name = 'email' id='email' />
-		<article id="emailerror"></article><br>
-		
-		<label for ='address'>Password </label>
-		<input type = 'password' name = 'password' id='password' />
-		<article id="passworderror"></article><br>
-	
 		<label for ='school'>School</label>
-		<select name="school" id ="school"><?php
-			echo "<option value=0 selected>Select one</option>";
-			$count = 1;
-			foreach ($collegeMajorArray as $school => $major){
-      			echo "<option value=$count>$school</option>";
-      			$count++;
-      			}?>;
-		</select>
-		<article id="schoolerror"></article><br>
+		<select name="school" id="school">
+  	  		<option value="Carroll School of Management">Carroll School of Management</option>
+  	 		<option value="College of Arts and Sciences">College of Arts and Sciences</option>
+  	 		<option value="Connell School of Nursing">Connell School of Nursing</option>
+  	 		<option value="Lynch School of Education">Lynch School of Education</option>
+		</select><br><br>
 		
 		<label for ='major'>Major</label>
-		<select name="major" id ="major"><?php
-			echo "<option value=0> </option>";
-			$count = 1;
+		<select name ="major" id="major">
+			<?php
 			foreach ($collegeMajorArray as $school => $major){
-				$majorArray = explode(",",$major);
-      			foreach ($majorArray as $value){
-      				echo "<option value=$count>$value</option>";
-      			}
-      			echo"\n";
-      			$count++;
-      		}?>;
+					echo "<optgroup label='$school'>\n";
+					$majorArray = explode(",",$major);
+					foreach ($majorArray as $value){
+						echo "\t\t<option value='$value'>$value</option>\n";
+					}
+					echo "</optgroup>\n\n";
+			}?>
 		</select>
-		<article id="majorerror"></article><br>
 		
 		<script>
-			$("#school").change(function() { 
-			if($(this).data('options') == undefined){
-				/*Takes an array of all majors and kind of embeds it on the school*/
-				$(this).data('options',$('#major option').clone());
-				} 
-			var id = $(this).val();
-			var options = $(this).data('options').filter('[value=' + id + ']');
-			$('#major').html(options);
+			$("#school").on("change", function() {
+				$states = $("#major");
+				$states.find("optgroup").hide().children().hide();
+				$states.find("optgroup[label='" + this.value + "']").show().children().show();
+				$states.find("optgroup[label='" + this.value + "'] option").eq(0).prop("selected", true);
 			});
-		</script>
-		
+		</script><br><br>
+
 		<label for ='class'>Class</label>
 		<select name="class" id ="class"><?php
-			$count = 4;
+			echo "<option value=0> </option>\n";
 			foreach ($classArray as $class){
-      			echo "<option value=$count>$class</option>";
-      			$count--;
+      			echo "<option value=$class>$class</option>\n";
       			}?>;
-		</select>
-		<article id="classerror"></article><br>
-	
-		<input type = 'submit' name = 'add' value ='Sign Up!'/>
+		</select><br><br>
+
+		<input type = 'submit' name = 'addMember' value ='Sign Up!'/><br><br>
+				
+		<article id="errormessage"></article><br>
+		<article id="invaliderrormessage"></article>
 	</form>
 	
 </body>
 </html>
+<?php
+
+function textInput($name,$display){
+	$error = $name . "error";
+	if ($name!="password" && $name!="confirmpassword"){
+		echo"<label for=$name>$display</label>
+			<input type ='text' name = '$name' id= '$name' /><br><br>\n";
+	}
+	else{
+		echo"<label for=$name>$display</label>
+			<input type ='password' name = '$name' id= '$name' /><br><br>\n";
+	}
+}
