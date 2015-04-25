@@ -4,7 +4,10 @@
   --
   -- index.php
   -->
-	
+<?php 
+
+
+?>	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +38,26 @@
 			<input class='menubutton' type='submit' name='about' value='About'/>
 			<br><br><br><br>
 		</form>
+		<form method='POST' action='login.php'>
+			<b>Log In</b><br>
+			BC Email Address:<br>
+			<input type='text' name='u' value=''/>
+			<br>Password:<br>
+			<input type='password' name='pw' value=''/>
+			<input type='submit' name='login' value='Log In'/>
+			<br><br><br><br>
+		</form>
+		<br>
+		
+		<br><br>
+		Forgot Password? Enter email address below to have a new password be sent to you.
+		<br><br>
+		<form type='get'>
+			<input type='text' name='email' value='Enter BC Email Address'/>
+			<input type='submit' name='resetpw' value='Reset Password'/>
+			<br><br><br><br>
+		</form>
+		
 	</div>
 	<div id='homeright'>
 		<h1>Welcome to the Boston College Technology, Entrepreneurship, and Social Innovation Calendar</h1>
@@ -44,6 +67,8 @@
 			<li> Ayako Mikami </li>
 			<li> Jonathan Ho </li>
 		</ul>
+		<br><br>
+
 	</div>
 	</div>
 
