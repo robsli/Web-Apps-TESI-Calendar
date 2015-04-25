@@ -19,12 +19,18 @@
 	<div id='homeleft'>
 		<h1>Menu</h1>
 		<br><br>
-		<form type='get'>
+		<form type='get' action='joinform.php'>
 			<input class='menubutton' type='submit' name='joinlistserv' value='Join Listserv!'/>
+		</form>
+		<form type='get' action='calendarops.php'>
 			<br><br><br><br>
 			<input class='menubutton' type='submit' name='eventcal' value='Event Calendar'/>
+		</form>
+		<form type='get'>
 			<br><br><br><br>
 			<input class='menubutton' type='submit' name='news' value='Tech News'/>
+		</form>
+		<form type='get'>
 			<br><br><br><br>
 			<input class='menubutton' type='submit' name='about' value='About'/>
 			<br><br><br><br>
