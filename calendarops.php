@@ -1,20 +1,32 @@
-<!-- Web Apps Test PHP Functions -->
+<?php session_start(); ?>
+<!-- Web Apps Test PHP Functions
 
 <iframe src="https://www.google.com/calendar/embed?src=tesicalendar2015%40gmail.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
+-->
 <?php
 
-echo "<br><br>Session Token is: " . $_SESSION['token'] . "<br><br>";
-
 include(__DIR__.'/google-api-php-client/src/Google/autoload.php'); 
+define('SECRET_PATH', 'client_secret.json');
+
+
+if ((isset($_SESSION)) && (!empty($_SESSION))) {
+   echo "There are cookies<br>";
+   echo "<pre>";
+   print_r($_SESSION);
+   echo "</pre>";
+}
+
 date_default_timezone_set('America/New_York');
+
 //TELL GOOGLE WHAT WE'RE DOING
 	$client = new Google_Client(array('use_objects' => true));
 	$client->setApplicationName("My Calendar"); //DON'T THINK THIS MATTERS
 	$client->setDeveloperKey('AIzaSyAmfEhwr5Z-Zdn5vzONG42j2BRndsrmTLM');
 	$client->setRedirectUri('calendarops.php');
-	$client->setClientSecret('');
+	$client->setAuthConfigFile(SECRET_PATH);
 	$cal = new Google_Service_Calendar($client);
+	echo "Make it past here";
+	/*
 	if(isset($_GET['logout'])) {
 		unset($_SESSION['token']);
 	}
@@ -28,6 +40,8 @@ date_default_timezone_set('America/New_York');
 		echo "<br>Getting Access";
 		$client->setAccessToken($_SESSION['token']);
 	}
+	
+	if ($client->getAccessToken()) {
 	// Creating a new Event
 		$event = new Google_Service_Calendar_Event();
 		$event ->setSummary('Appointment');
@@ -39,7 +53,7 @@ date_default_timezone_set('America/New_York');
 		$end->setDateTime('2015-04-22T10:25:00.000-07:00');
 		$event->setEnd($end);
 		$attendee1 = new Google_Service_Calendar_EventAttendee();
-		$attendee1->setEmail('attendeeEmail');
+		$attendee1->setEmail('tesicalendar2015@gmail.com');
 		// ...
 		$attendees = array($attendee1,
 						   // ...
@@ -47,8 +61,10 @@ date_default_timezone_set('America/New_York');
 		$event->attendees = $attendees;
 		$createdEvent = $cal->events->insert('TESI Calendar', $event);
 
-		echo $createdEvent->getId();
+		echo "Created event: " . $createdEvent->getId();
+	}
 	
+	*/
 	
 	$calendarId = 'tesicalendar2015@gmail.com';
 	$params = array(
