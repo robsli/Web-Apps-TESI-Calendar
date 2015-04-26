@@ -12,65 +12,104 @@
 <html lang="en">
 <head>
 	<title>Home Page</title>
-	<link rel='stylesheet' type='text/css' href='tesihome.css'/>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
-	<div>
-	<div id='homeleft'>
-		<h1>Menu</h1>
-		<br><br>
-		<form type='get' action='joinform.php'>
-			<input class='menubutton' type='submit' name='joinlistserv' value='Join Listserv!'/>
-		</form>
-		<form type='get' action='calendarops.php'>
-			<br><br><br><br>
-			<input class='menubutton' type='submit' name='eventcal' value='Event Calendar'/>
-		</form>
-		<form type='get'>
-			<br><br><br><br>
-			<input class='menubutton' type='submit' name='news' value='Tech News'/>
-		</form>
-		<form type='get'>
-			<br><br><br><br>
-			<input class='menubutton' type='submit' name='about' value='About'/>
-			<br><br><br><br>
-		</form>
-		<form method='POST' action='login.php'>
-			<b>Log In</b><br>
-			BC Email Address:<br>
-			<input type='text' name='u' value=''/>
-			<br>Password:<br>
-			<input type='password' name='pw' value=''/>
-			<input type='submit' name='login' value='Log In'/>
-			<br><br><br><br>
-		</form>
-		<br>
+		<nav class="navbar navbar-default">
+		<div class="container-fluid">
+		<div class="navbar-header">
+		  <a class="navbar-brand" href="index.php">T E S I</a>
+		</div>
+		<div>
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="joinform.php">Sign Up</a></li>
+			<li><a href="calendarops.php">Events</a></li>
+			<li><a href="#">News</a></li>
+			
+		  </ul>
+		</div>
+		</div>
+		</nav>
 		
-		<br><br>
-		Forgot Password? Enter email address below to have a new password be sent to you.
-		<br><br>
-		<form type='get'>
-			<input type='text' name='email' value='Enter BC Email Address'/>
-			<input type='submit' name='resetpw' value='Reset Password'/>
-			<br><br><br><br>
-		</form>
 		
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="text-center">T E S I</h1>
+			<p class="text-center">Boston College Technology, Entrepreneurship, and Social Innovation</p>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+			  <h3>Upcoming Event</h3>
+			    <h4>MIT Media Lab</h4>
+			     <p><b>Friday, May 1st 2-5pm</b></p>
+						  <!-- Trigger the modal with a button -->
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Learn More</button>
+
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">MIT Media Lab</h4>
+				  </div>
+				  <div class="modal-body">
+				    <img src="images/mit_logo.png" class="img-responsive" alt="mit_logo"/>
+					<p>The MIT Media Lab is a multi-disciplinary lab with research groups focusing in on the edges and future of technology and design. Students will tour the facilities and see the following research groups/demos: Lifelong Kindergarten, cityFARM, and Viral Communications. The MIT Media Lab is the home and birthplace of successes like Guitar Hero, Echonest, Processing, Scratch, Lego Mindstorms, and the bionic prosthetics that allowed Boston bombing survivor Adrianne Haslet Davis to dance again.</p>
+				    <p><a href ='http://www.media.mit.edu/'>Website</a></p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+
+				</div>
+				</div>
+			 
+			  <button type="button" class="btn btn-primary">RSVP</button>
+			</div>
+			<div class="col-sm-4">
+			  <h3>Log In</h3>
+				<p><form method='POST' action='login.php'>
+					BC Email Address:<br>
+					<input type='text' name='u' value=''/>
+					<br>Password:<br>
+					<input type='password' name='pw' value=''/>
+					<br><br>
+					<input class="btn btn-warning" type='submit' name='login' value='Log In'/>
+			    </form></p>
+			  
+			</div>
+			<div class="col-sm-4">
+			  <h3>Forgot Password?</h3> 
+			  <p>Forgot Password? Enter email address below to have a new password be sent to you.</p>
+		
+			  <p><form method='POST' action='login.php'>
+					<input type='text' name='email' value='Enter BC Email Address'/>
+					<br><br>
+					<input type='submit' class="btn btn-danger" name='resetpw' value='Reset Password'/>
+			  </form></p>
+			
+			</div>
+		</div>
 	</div>
-	<div id='homeright'>
-		<h1>Welcome to the Boston College Technology, Entrepreneurship, and Social Innovation Calendar</h1>
-		<br><br>
-		<ul>List of Contributors:
-			<li> Robbie Li </li>
-			<li> Ayako Mikami </li>
-			<li> Jonathan Ho </li>
-		</ul>
+		
 		<br><br>
 
-	</div>
-	</div>
+   
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
 
 
 </body>
