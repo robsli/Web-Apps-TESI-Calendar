@@ -21,51 +21,10 @@ date_default_timezone_set('America/New_York');
 //TELL GOOGLE WHAT WE'RE DOING
 	$client = new Google_Client(array('use_objects' => true));
 	$client->setApplicationName("My Calendar"); //DON'T THINK THIS MATTERS
-	$client->setDeveloperKey('AIzaSyAmfEhwr5Z-Zdn5vzONG42j2BRndsrmTLM');
+	$client->setDeveloperKey('AIzaSyBPeUMzgJOLKTkFtqMpLCTMI84vz0oQcXg');
 	$client->setRedirectUri('calendarops.php');
 	$client->setAuthConfigFile(SECRET_PATH);
 	$cal = new Google_Service_Calendar($client);
-	echo "Make it past here";
-	/*
-	if(isset($_GET['logout'])) {
-		unset($_SESSION['token']);
-	}
-	if(isset($_GET['code'])) {
-		$client->authenticate($_GET['code']);
-		$_SESSION['token'] = $client->getAccessToken();
-		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
-	}
-	
-	if (isset($_SESSION['token'])) {
-		echo "<br>Getting Access";
-		$client->setAccessToken($_SESSION['token']);
-	}
-	
-	if ($client->getAccessToken()) {
-	// Creating a new Event
-		$event = new Google_Service_Calendar_Event();
-		$event ->setSummary('Appointment');
-		$event->setLocation('Fulton Hall');
-		$start = new Google_Service_Calendar_EventDateTime();
-		$start->setDateTime('2015-04-22T10:00:00-07:00');
-		$event->setStart($start);
-		$end = new Google_Service_Calendar_EventDateTime();
-		$end->setDateTime('2015-04-22T10:25:00.000-07:00');
-		$event->setEnd($end);
-		$attendee1 = new Google_Service_Calendar_EventAttendee();
-		$attendee1->setEmail('tesicalendar2015@gmail.com');
-		// ...
-		$attendees = array($attendee1,
-						   // ...
-						  );
-		$event->attendees = $attendees;
-		$createdEvent = $cal->events->insert('TESI Calendar', $event);
-
-		echo "Created event: " . $createdEvent->getId();
-	}
-	
-	*/
-	
 	$calendarId = 'tesicalendar2015@gmail.com';
 	$params = array(
 //CANT USE TIME MIN WITHOUT SINGLEEVENTS TURNED ON, IT SAYS TO TREAT RECURRING EVENTS AS SINGLE EVENTS

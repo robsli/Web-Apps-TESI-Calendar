@@ -1,9 +1,8 @@
 <?php
-error_reporting(E_ALL);
+session_start();
 require_once 'google-api-php-client/src/Google/autoload.php';
 require_once 'google-api-php-client/src/Google/Client.php';
 require_once 'google-api-php-client/src/Google/Service/Calendar.php';
-session_start();
 
 
 if ((isset($_SESSION)) && (!empty($_SESSION))) {
@@ -15,58 +14,58 @@ if ((isset($_SESSION)) && (!empty($_SESSION))) {
 
 date_default_timezone_set('America/New_York');
 
-	$client = new Google_Client();
-	$client->setApplicationName("My Calendar");
-	$client->setClientId('1078446578164-12fldfgjdmk6tnu427tbpaisfjahrler.apps.googleusercontent.com');
-	$client->setClientSecret('3x06MjfJOSPvPrgBtTaSp1mT');
-	$client->setRedirectUri('urn:ietf:wg:oauth:2.0:oob');
-	$client->setDeveloperKey('AIzaSyBPeUMzgJOLKTkFtqMpLCTMI84vz0oQcXg');
-	$cal = new Google_Service_Calendar($client);
-	
-	
-	if (isset($_GET['logout'])) {
-	  echo "<br><br><font size=+2>Logging out</font>";
-	  unset($_SESSION['token']);
-	}
+$client = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b.apps.googleusercontent.com';
+$service_email = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b@developer.gserviceaccount.com';
+$keyFileLocation = 'TESI Calendar-1ab97ed7c865.p12';
+$client = new Google_Client();
+$client->setApplicationName("TESI Calendar");
+$key = file_get_contents($keyFileLocation);
+$scopes = "https://www.googleapis.com/auth/calendar";
+$cred = new Google_Auth_AssertionCredentials(
+	$service_email,
+	array($scopes),
+	$key);
+$client->setAssertionCredentials($cred);
+if($client->getAuth()->isAccessTokenExpired()) {	 	
+	$client->getAuth()->refreshTokenWithAssertion($cred);	 	
+}	 	
 
-	if (isset($_GET['code'])) {
-	  echo "<br>I got a code from Google = ".$_GET['code']; // You won't see this if redirected later
-	  $client->authenticate($_GET['code']);
-	  $_SESSION['token'] = $client->getAccessToken();
-	  header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);
-	  echo "<br>I got the token = ".$_SESSION['token']; // <-- not needed to get here unless location uncommented
-	}
+$scope = new Google_Service_Calendar_AclRuleScope();
+$scope->setType('user');
+$scope->setValue( 'tesicalendar2015@gmail.com' );
 
-	if (isset($_SESSION['token'])) {
-	  echo "<br>Getting access";
-	  $client->setAccessToken($_SESSION['token']);
-	} else {
-		echo "<br> Failed to get access token.";
-	}
-	echo "Make it past all the if statements";
-	echo '$client->getAccessToken is: ' . $client->getAccessToken();
-	
-	//if ($client->getAccessToken()) {
-	// Creating a new Event
-		echo "Creating event";
-		$event = new Google_Service_Calendar_Event();
-		$event ->setSummary('Appointment');
-		$event->setLocation('Fulton Hall');
-		$start = new Google_Service_Calendar_EventDateTime();
-		$start->setDateTime('2015-04-22T10:00:00-07:00');
-		$event->setStart($start);
-		$end = new Google_Service_Calendar_EventDateTime();
-		$end->setDateTime('2015-04-22T10:25:00.000-07:00');
-		$event->setEnd($end);
-		$attendee1 = new Google_Service_Calendar_EventAttendee();
-		$attendee1->setEmail('tesicalendar2015@gmail.com');
-		// ...
-		$attendees = array($attendee1,
-						   // ...
-						  );
-		$event->attendees = $attendees;
-		$createdEvent = $cal->events->insert('TESI Calendar', $event);
+$rule = new Google_Service_Calendar_AclRule();
+$rule->setRole( 'owner' );
+$rule->setScope( $scope );
 
-		echo "Created event: " . $createdEvent->getId();
+$service = new Google_Service_Calendar($client);  
+$result = $service->acl->insert('primary', $rule);
+echo "Authorization passed!";
+
+?>
+
+<?php 
+
+    $event = new Google_Service_Calendar_Event();
 	
+	$event->setSummary('Halloween');
+	$event->setLocation('Awesomeness');
+	
+	$start = new Google_Service_Calendar_EventDateTime();
+	$start->setDateTime('2015-04-29T04:00:00.000');
+	$start->setTimeZone('America/New_York');
+	$event->setStart($start);
+	
+	$end = new Google_Service_Calendar_EventDateTime();
+	$end->setDateTime('2015-04-29T05:00:00.000');
+	$end->setTimeZone('America/New_York');
+	$event->setEnd($end);
+	
+	$attendee1 = new Google_Service_Calendar_EventAttendee();
+	$attendee1->setEmail('lifm@bc.edu');
+	$attendees = array($attendee1);
+	//$event->attendees = $attendees;
+
+	$createdEvent = $service->events->insert("primary", $event);
+
 ?>
