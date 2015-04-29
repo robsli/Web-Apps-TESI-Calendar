@@ -52,7 +52,7 @@
 
 <?php
 function returnHome(){
-	echo" <form action='http://cscilab.bc.edu/~hojn/project/joinform.php'>
+	echo" <form action='index.php'>
 	<input type='submit' value='Home'></form><br>";
 }
 
