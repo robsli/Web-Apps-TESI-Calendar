@@ -1,0 +1,32 @@
+/*
+CREATE TABLE TESI_MEMBERSHIP(
+ID int NOT NULL AUTO_INCREMENT, 
+PRIMARY KEY (ID),
+firstname VARCHAR(40),
+lastname VARCHAR(40),
+email VARCHAR(50),
+PASSWORD VARCHAR(40),
+registrationdate DATETIME,
+school VARCHAR(40),
+major VARCHAR(40),
+classyear INT(4),
+membershiptype enum('general', 'admin')
+);
+
+CREATE TABLE TESI_EVENTS(
+ID int NOT NULL AUTO_INCREMENT, 
+PRIMARY KEY (ID),
+name VARCHAR(40),
+company VARCHAR(40),
+club VARCHAR(50),
+dateofvisit DATETIME
+);
+
+CREATE TABLE TESI_ATTENDANCE(
+ID int NOT NULL AUTO_INCREMENT, 
+PRIMARY KEY (ID),
+memberID int NOT NULL,
+eventID int NOT NULL,
+status enum('a','w','r'),
+dateofevent DATETIME,
+);*/

@@ -23,22 +23,10 @@
 	$rows = mysqli_num_rows($selectResult);
 	mysqli_free_result($selectResult);
 	
-	
-/*
-CREATE TABLE TESI_MEMBERSHIP(
-firstname VARCHAR(40),
-lastname VARCHAR(40),
-email VARCHAR(50),
-PASSWORD VARCHAR(40),
-registrationdate DATETIME,
-school VARCHAR(40),
-major VARCHAR(40),
-classyear INT(4),
-membershiptype enum('general', 'admin')
-);
-*/
 	if ($rows==0){
-		$insertQuery = "INSERT INTO TESI_MEMBERSHIP VALUES ('$firstname', '$lastname', '$email', sha1('$password'), now(), 
+		$insertQuery = "INSERT INTO TESI_MEMBERSHIP(firstname, lastname, email, password, 
+		registrationdate, school, major, classyear, membershiptype)
+		VALUES ('$firstname', '$lastname', '$email', sha1('$password'), now(), 
 		'$school', '$major', $class,'general')";
 		//echo "Query: $query <br>";
 

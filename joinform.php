@@ -117,7 +117,7 @@
       <label class="control-label col-sm-3"  for ='class'>Class</label>
       <div class="col-sm-6">
            <select name="class" id ="class"><?php
-			echo "<option value=0> </option>\n";
+			//echo "<option value=0> </option>\n";
 			foreach ($classArray as $class){
       			echo "<option value=$class>$class</option>\n";
       			}?>;
