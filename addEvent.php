@@ -21,6 +21,9 @@
 <body>
 
 <?php
+	include ('navbar.php');
+	displayNavbar();
+
 	if (isset($_POST['eventTitle']) && isset($_POST['eventLocation']) 
 		&& isset($_POST['eventDate']) && isset($_POST['eventStart'])
 		&& isset($_POST['eventEnd']) && isset($_POST['addEvent'])) {
@@ -33,22 +36,6 @@
 	}
 
 ?>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid">
-		<div class="navbar-header">
-		  <a class="navbar-brand" href="index.php">T E S I</a>
-		</div>
-		<div>
-		  <ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="joinform.php">Sign Up</a></li>
-			<li><a href="viewCalendar.php">Events</a></li>
-			<li class="active"><a href="#">News</a></li>
-		  </ul>
-		</div>
-		</div>
-		</nav>
 	</body>
 </html>
 

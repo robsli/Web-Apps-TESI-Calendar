@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home Page</title>
+	<title>Events</title>
     <script src="jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="joinscript.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,25 +22,11 @@
 </head>
 
 <body>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid">
-		<div class="navbar-header">
-		  <a class="navbar-brand" href="index.php">T E S I</a>
-		</div>
-		<div>
-			<ul class="nav navbar-nav">			
-				<li><a href="index.php">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="viewCalendar.php">Events</a></li>
-				<li><a href="#">News</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="joinform.php">Sign Up</a></li>
-				<li><a href="#">Member Page</a></li>
-		  </ul>
-		</div>
-		</div>
-		</nav>
+
+<?php
+	include ('navbar.php');
+	displayNavbar();
+?>
 
 	<div class='row'>
 		<div class='col-md-1'>

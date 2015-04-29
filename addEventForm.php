@@ -28,23 +28,10 @@
 	}
 
 ?>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid">
-		<div class="navbar-header">
-		  <a class="navbar-brand" href="index.php">T E S I</a>
-		</div>
-		<div>
-		  <ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="joinform.php">Sign Up</a></li>
-			<li><a href="viewCalendar.php">Events</a></li>
-			<li><a href="#">News</a></li>
-			
-		  </ul>
-		</div>
-		</div>
-		</nav>
+<?php
+	include ('navbar.php');
+	displayNavbar();
+?>
 	
 	<form class="form-horizontal" role="form" method = "post" action="addEvent.php">
 		<div class="form-group">
