@@ -42,11 +42,16 @@ function handleLoginForm(){
 		$result = performQuery($dbc, $query);
 	    if (mysqli_num_rows($result) == 1) {
      		 $row = mysqli_fetch_assoc($result);
-     		 $name = $row['email'];
+     		 $email = $row['email'];
+     		 $firstname = $row['firstname'];
      		 
 			 session_start();
-      		 //Store the name in the session
-      		 $_SESSION['userlogin'] = $name;
+      		 //Store the email in the session
+      		 $_SESSION['userlogin'] = $email;
+      		 
+      		 //Store the name in the session.
+      		 $_SESSION['firstname'] = $firstname;
+      		 
       		header("Location: index.php");
          }
           else{ 

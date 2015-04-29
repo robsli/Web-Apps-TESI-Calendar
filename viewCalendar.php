@@ -21,12 +21,13 @@
 		  <a class="navbar-brand" href="index.php">T E S I</a>
 		</div>
 		<div>
-		  <ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
+		  <ul class="nav navbar-nav">			
+			<li><a href="index.php">Home</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="joinform.php">Sign Up</a></li>
-			<li class="active"><a href="viewCalendar.php">Events</a></li>
+			<li><a href="viewCalendar.php">Events</a></li>
 			<li><a href="#">News</a></li>
+			<li><a href="#">Member Page</a></li>
 			
 		  </ul>
 		</div>

@@ -29,7 +29,7 @@ session_start();
 			<li><a href="#">News</a></li>
 			<li><a href="#">Member Page</a></li>
 			<li><?php 
-				if (isset($_SESSION['userlogin'])){
+				if (isset($_SESSION['firstname'])){
 				   echo"<a href='logout.php'>Logout</a>";
 				} else {
 			       echo "<a href='#loginModal' data-toggle='modal' data-target='#loginModal'>LogIn</a>"; 
@@ -85,8 +85,8 @@ session_start();
 			<h1 class="text-center">T E S I</h1>
 			<p class="text-center">Boston College Technology, Entrepreneurship, and Social Innovation</p>
 			<?php 
-			$user = isset($_SESSION['userlogin'])? $_SESSION['userlogin']:"error";
- 			echo "<p class='text-center'>hello $user, you have successfully logged in</p>";
+			$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
+ 			echo "<p class='text-center'>Hello $user, you have successfully logged in.</p>";
  			?>
 		</div>
 		<div class="row">
