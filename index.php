@@ -6,6 +6,9 @@
   -->
 <?php 
 
+session_start();
+//include('session.php');
+
 
 ?>	
 <!DOCTYPE html>
@@ -44,6 +47,10 @@
 		<div class="jumbotron">
 			<h1 class="text-center">T E S I</h1>
 			<p class="text-center">Boston College Technology, Entrepreneurship, and Social Innovation</p>
+			<?php 
+			$user = isset($_SESSION['userlogin'])? $_SESSION['usertype']:"error";
+ 			echo "<p>hello $user, you have successfully logged in</p>";
+ 			?>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">
@@ -66,7 +73,7 @@
 				  <div class="modal-body">
 				    <img src="images/mit_logo.png" class="img-responsive" alt="mit_logo"/>
 					<p>The MIT Media Lab is a multi-disciplinary lab with research groups focusing in on the edges and future of technology and design. Students will tour the facilities and see the following research groups/demos: Lifelong Kindergarten, cityFARM, and Viral Communications. The MIT Media Lab is the home and birthplace of successes like Guitar Hero, Echonest, Processing, Scratch, Lego Mindstorms, and the bionic prosthetics that allowed Boston bombing survivor Adrianne Haslet Davis to dance again.</p>
-				    <p><a href ='http://www.media.mit.edu/'>Website</a></p>
+				    <p><a href ='http://www.media.mit.edu/' onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">View Website</a></p>
 				  </div>
 				  <div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
