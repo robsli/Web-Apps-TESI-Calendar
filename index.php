@@ -1,20 +1,6 @@
 <?php 
 session_start();
-?>
-<!-- Web Applications Project
-  --
-  -- Contributors: Robbie Li, Ayako Mikami, Jonathan Ho
-  --
-  -- index.php
-<<<<<<< HEAD
-  -->
-<?php 
-
-
 ?>	
-=======
-  -->	
->>>>>>> origin/master
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +14,7 @@ session_start();
 </head>
 
 <body>
- <form method='POST' action='logout.php'>
-	<input type = 'submit' name='logout' value='Log Out'/>
- </form>
+
 		<nav class="navbar navbar-default">
 		<div class="container-fluid">
 		<div class="navbar-header">
@@ -38,22 +22,72 @@ session_start();
 		</div>
 		<div>
 		  <ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
+			<li><a href="index.php">Home</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="joinform.php">Sign Up</a></li>
 			<li><a href="viewCalendar.php">Events</a></li>
 			<li><a href="#">News</a></li>
+			<li><a href="#">Member Page</a></li>
+			<li><?php 
+				if (isset($_SESSION['userlogin'])){
+				   echo"<a href='logout.php'>Logout</a>";
+				} else {
+			       echo "<a href='#loginModal' data-toggle='modal' data-target='#loginModal'>LogIn</a>"; 
+			       }
+			    ?>
+			    </li>
 			
 		  </ul>
 		</div>
 		</div>
 		</nav>
+		<!-- Modal -->
+				<div id="loginModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Log In</h4>
+				  </div>
+				  <div class="modal-body">
+				 <form method='POST' action='login.php'>
+				 <h3>Log In</h3> 
+					BC Email Address:<br>
+					<input type='text' name='u' value=''/>
+					<br>Password:<br>
+					<input type='password' name='pw' value=''/>
+					<br><br>
+					<input class="btn btn-warning" type='submit' name='login' value='Log In'/>
+			    </form>
+			    
+			    <h3>Forgot Password?</h3> 
+			  <p>Forgot Password? Enter email address below to have a new password be sent to you.</p>
 		
+			  <p><form method='POST' action='login.php'>
+					<input type='text' name='email' value='Enter BC Email Address'/>
+					<br><br>
+					<input type='submit' class="btn btn-danger" name='resetpw' value='Reset Password'/>
+			  </form></p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+			</div>
+			</div>
+		<!-- End of Modal-->
 		
+	<!-- Beginning of Content in Body-->
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="text-center">T E S I</h1>
 			<p class="text-center">Boston College Technology, Entrepreneurship, and Social Innovation</p>
+			<?php 
+			$user = isset($_SESSION['userlogin'])? $_SESSION['userlogin']:"error";
+ 			echo "<p class='text-center'>hello $user, you have successfully logged in</p>";
+ 			?>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">
@@ -76,7 +110,7 @@ session_start();
 				  <div class="modal-body">
 				    <img src="images/mit_logo.png" class="img-responsive" alt="mit_logo"/>
 					<p>The MIT Media Lab is a multi-disciplinary lab with research groups focusing in on the edges and future of technology and design. Students will tour the facilities and see the following research groups/demos: Lifelong Kindergarten, cityFARM, and Viral Communications. The MIT Media Lab is the home and birthplace of successes like Guitar Hero, Echonest, Processing, Scratch, Lego Mindstorms, and the bionic prosthetics that allowed Boston bombing survivor Adrianne Haslet Davis to dance again.</p>
-				    <p><a href ='http://www.media.mit.edu/'>Website</a></p>
+				    <p><a href ='http://www.media.mit.edu/' onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">View Website</a></p>
 				  </div>
 				  <div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -85,32 +119,11 @@ session_start();
 
 				</div>
 				</div>
-			 
+			  <!-- End of Modal -->
 			  <button type="button" class="btn btn-primary">RSVP</button>
 			</div>
-			<div class="col-sm-4">
-			  <h3>Log In</h3>
-				<p><form method='POST' action='login.php'>
-					BC Email Address:<br>
-					<input type='text' name='u' value=''/>
-					<br>Password:<br>
-					<input type='password' name='pw' value=''/>
-					<br><br>
-					<input class="btn btn-warning" type='submit' name='login' value='Log In'/>
-			    </form></p>
-			  
-			</div>
-			<div class="col-sm-4">
-			  <h3>Forgot Password?</h3> 
-			  <p>Forgot Password? Enter email address below to have a new password be sent to you.</p>
-		
-			  <p><form method='POST' action='login.php'>
-					<input type='text' name='email' value='Enter BC Email Address'/>
-					<br><br>
-					<input type='submit' class="btn btn-danger" name='resetpw' value='Reset Password'/>
-			  </form></p>
+
 			
-			</div>
 		</div>
 	</div>
 		
