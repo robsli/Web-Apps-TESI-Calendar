@@ -4,9 +4,6 @@ include('include/dbconn.php');
 if (isset($_POST['login'])) {
    handleLoginForm();
    }
-else if (isset($_POST['resetpw'])){
-	handleForgotForm();
-  }
    
    
 /*function handleForm () {
@@ -46,18 +43,15 @@ function handleLoginForm(){
 	    if (mysqli_num_rows($result) == 1) {
      		 $row = mysqli_fetch_assoc($result);
      		 $name = $row['email'];
-     		 $type = $row['membershiptype'];
+     		 
 			 session_start();
       		 //Store the name in the session
       		 $_SESSION['userlogin'] = $name;
-      		 $_SESSION['usertype'] = $type;
-      		header("Location: index.php");
-      		exit;
+      		header("Location: success.php");
          }
           else{ 
              echo "The combination of the login and password do not match 1 ";
           } 
-          disconnectFromDB($dbc, $result);
 	} else {
 	     echo "The combination of the login and password do not match 2";
 	}
@@ -93,7 +87,23 @@ function emailExists($email){
 
 
 /*
+function emailNOvalid ($email){
 
+	$dbc= connectToDB("lifm");
+	$query= "SELECT * FROM `TESI_MEMBERSHIP` where `email`='$email'";
+	$result= performQuery ($dbc, $query);
+	$row=mysqli_num_rows($result);
+
+	if ($row!=0) {
+		echo "E-mail address entered already exists
+		<br><a href='http://cscilab.bc.edu/~mikamia/hw12a/index.php?showjoin=Join+the+Club'>Retry</a>";
+		return false;
+	}
+	
+	
+
+	return true;
+}
 
 
 function handleJoinForm () {
@@ -109,32 +119,46 @@ function handleJoinForm () {
 	}
 
 }
-
-
-
 */
+
+/*
+function insertmember() {
+
+	$name= $_POST['name'];
+	$email= $_POST['email'];
+	$password= $_POST['password'];
+	$membership= $_POST['memberType'];
+
+	$dbc= connectToDB("mikamia");
+	$query= "insert into myClub(Name, Email, Password, RegistrationDate, MembershipType) values('$name', '$email', sha1('$password'), now(), '$membership')";
+	$result= mysqli_query($dbc, $query) or
+		die ('Invalid query: $query '. mysqli_error($dbc));
+
+
+
+}
+
 function handleForgotForm() {
-	$emailValidate = $_POST['email'];
+	$emailValidate = $_POST['emailforget'];
 	$val = emailExists($emailValidate);
 	
 	if ($val != 1) {
 	    
 		echo "This email does not exist. Please try again. 
-		<br><a href='index.php'>Retry</a>";
+		<br><a href='http://cscilab.bc.edu/~mikamia/hw12a/index.php?forgotpw=Forgot+Password'>Retry</a>";
 	   
 	    return;
 	}
 	$newPW = createpw();
-	$hiddenpw= sha1(sha1($newPW));
+	$hiddenpw= sha1($newPW);
 	
-	$dbc= connectToDB("lifm");
-	$query= "UPDATE TESI_MEMBERSHIP SET Password= '$hiddenpw' WHERE email='$emailValidate'";
+	$dbc= connectToDB("mikamia");
+	$query= "UPDATE myClub SET Password= '$hiddenpw' WHERE Email='$emailValidate'";
 	$result = performQuery ($dbc, $query);
 
 	$to= $emailValidate;
 	$subject= 'New Password';
-	$message = "Your new password is ".$newPW.". Please go to the website and log in with this password. After you log in you can change it to something else.";
-	$body= $message;
+	$body= $newPW;
 	$headers= 'From: mikamia@bc.edu';
 
 	if (mail($to, $subject, $body, $headers))
@@ -143,8 +167,10 @@ function handleForgotForm() {
 		echo "Mail was NOT sent";
 	
 }
+*/
 
 
+/*
 function createpw() {
 	$password="";
 
@@ -162,30 +188,5 @@ function createpw() {
 	}
 	return $password;
 }
-/*
-function handleUpdatepw(){
-  $oldpw = isset($_POST['current'])? sha1(sha1($_POST['current'])) : '';
-  $new1 = isset($_POST['new1'])? $_POST['new1'] : '';
-  $new2 = isset($_POST['new2'])? $_POST['new2'] : '';
-  $user = $_SESSION['userlogin'];
-  echo "user is $user";
-  
-  if (passwordsNOmatch($new1,$new2)){
-  	echo "New password and new password again does not match.";
-  	return;
-  }
-  /*
-  $dbc= connectToDB("lifm");
-  $query = "SELECT * from TESI_MEMBERSHIP where email = '$user' AND PASSWORD = '$oldpw'"; 
-  $result = performQuery($dbc, $query);
-  if (mysqli_num_rows($result) == 1) {
-	$query= "UPDATE TESI_MEMBERSHIP SET Password= 'sha1(sha1($new1')) WHERE email='$user'"; 
-    $result = performQuery($dbc, $query);
-  } else{ 
-	  echo "The old password you entered was incorrect. Please try again.";
-  } 
-  */
-
-
-
+*/
 ?>

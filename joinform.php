@@ -19,9 +19,9 @@
 		</div>
 		<div>
 		  <ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">Home</a></li>
 			<li><a href="#">About</a></li>
-			<li><a href="joinform.php">Sign Up</a></li>
+			<li class="active"><a href="joinform.php">Sign Up</a></li>
 			<li><a href="viewCalendar.php">Events</a></li>
 			<li><a href="#">News</a></li>
 			

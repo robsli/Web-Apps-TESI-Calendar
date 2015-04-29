@@ -1,3 +1,10 @@
+<?php 
+	session_start();
+	require_once 'google-api-php-client/src/Google/autoload.php';
+	require_once 'google-api-php-client/src/Google/Client.php';
+	require_once 'google-api-php-client/src/Google/Service/Calendar.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,17 +21,15 @@
 <body>
 
 <?php
-	if (isset($_GET['eventTitle'])) {
-		echo "Title: " . $_GET['eventTitle'];
-	}
-	if (isset($_GET['eventLocation'])) {
-		echo "<br>Location: " . $_GET['eventLocation'];
-	}
-	if (isset($_GET['eventDate'])) {
-		echo "<br>Date: " . $_GET['eventDate'];
-	}
-	if (isset($_GET['eventStart'])) {
-		echo "<br>Start: " . $_GET['eventStart'];
+	if (isset($_POST['eventTitle']) && isset($_POST['eventLocation']) 
+		&& isset($_POST['eventDate']) && isset($_POST['eventStart'])
+		&& isset($_POST['eventEnd']) && isset($_POST['addEvent'])) {
+			$summary = $_POST['eventTitle'];
+			$location = $_POST['eventLocation'];
+			$startTime = formatDate($_POST['eventDate'], $_POST['eventStart']);
+			$endTime = formatDate($_POST['eventDate'], $_POST['eventEnd']);
+			$description = $_POST['eventDescription'];
+			addEvent($summary, $location, $startTime, $endTime, $description);
 	}
 
 ?>
@@ -35,83 +40,26 @@
 		</div>
 		<div>
 		  <ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">Home</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="joinform.php">Sign Up</a></li>
 			<li><a href="viewCalendar.php">Events</a></li>
-			<li><a href="#">News</a></li>
-			
+			<li class="active"><a href="#">News</a></li>
 		  </ul>
 		</div>
 		</div>
 		</nav>
-	
-	<form class="form-horizontal" role="form" method = "get">
-		<div class="form-group">
-			<div class="col-sm-1">
-			</div>
-			<div class="col-sm-6">
-				<h1>Add Event Page</h1>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-3" for="school">Title:</label>
-			<div class="col-sm-6">
-				<input type='text' name='eventTitle' />
-			</div>
-		</div>
-    
-		<div class="form-group">
-			<label class="control-label col-sm-3" for ="major">Location</label>
-			<div class="col-sm-6">
-				<input type='text' name='eventLocation' />
-			</div>
-		</div>
-    
-		<div class="form-group">
-			<label class="control-label col-sm-3"  for ='class'>Date</label>
-			<div class="col-sm-6">
-				<input type='date' name='eventDate' />
-		   </div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-3"  for ='class'>Start Time</label>
-			<div class="col-sm-6">
-				<input type='time' name='eventStart' />
-		   </div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-3"  for ='class'>Event Description</label>
-			<div class="col-sm-6">
-				<textarea row = '4' cols='50' name='eventDescription'></textarea>
-		   </div>
-		</div>
-	    <div class="form-group"> 
-			<div class="col-sm-offset-3 col-sm-10">
-			<input class="btn btn-default" type = 'submit' name = 'addEvent' value ='Add Event to Calendar'/>
-			</div>
-		</div>	
-		<div class="form-group"> 
-			<div class="col-sm-offset-3 col-sm-10">	
-				<article id="errormessage"></article><br>
-				<article id="invaliderrormessage"></article>
-			</div>
-		</div>
-		</form>
-	</div>
-</body>
+	</body>
 </html>
 
 <?php
 
-function addEvent($summary, $location, $startTime, $endTime) {
-	session_start();
-	require_once 'google-api-php-client/src/Google/autoload.php';
-	require_once 'google-api-php-client/src/Google/Client.php';
-	require_once 'google-api-php-client/src/Google/Service/Calendar.php';
-
+function addEvent($summary, $location, $startTime, $endTime, $description) {
+	
+	//Set default timezone
 	date_default_timezone_set('America/New_York');
 
+	//Setup credentials
 	$client = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b.apps.googleusercontent.com';
 	$service_email = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b@developer.gserviceaccount.com';
 	$keyFileLocation = 'TESI Calendar-1ab97ed7c865.p12';
@@ -139,27 +87,30 @@ function addEvent($summary, $location, $startTime, $endTime) {
 	$service = new Google_Service_Calendar($client);  
 	$result = $service->acl->insert('primary', $rule);
 
+	
+	// Create new Google Event
 	$event = new Google_Service_Calendar_Event();
 	
 	$event->setSummary($summary);
 	$event->setLocation($location);
+	$event->setDescription($description);
 	
 	$start = new Google_Service_Calendar_EventDateTime();
-	$start->setDateTime($start);
+	$start->setDateTime($startTime);
 	$start->setTimeZone('America/New_York');
 	$event->setStart($start);
 	
 	$end = new Google_Service_Calendar_EventDateTime();
-	$end->setDateTime('2015-04-29T05:00:00.000');
+	$end->setDateTime($endTime);
 	$end->setTimeZone('America/New_York');
 	$event->setEnd($end);
-	
-	$attendee1 = new Google_Service_Calendar_EventAttendee();
-	$attendee1->setEmail('lifm@bc.edu');
-	$attendees = array($attendee1);
-	//$event->attendees = $attendees;
 
 	$createdEvent = $service->events->insert("primary", $event);
 } 
+
+function formatDate($date, $time) {
+	$result = $date . "T" . $time . ":00.000";
+	return $result;
+}
 
 ?>
