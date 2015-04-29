@@ -60,7 +60,7 @@ function addEvent($summary, $location, $startTime, $endTime, $description) {
 	date_default_timezone_set('America/New_York');
 
 	//Setup credentials
-	$client = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b.apps.googleusercontent.com';
+	$client_id = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b.apps.googleusercontent.com';
 	$service_email = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b@developer.gserviceaccount.com';
 	$keyFileLocation = 'TESI Calendar-1ab97ed7c865.p12';
 	$client = new Google_Client();
