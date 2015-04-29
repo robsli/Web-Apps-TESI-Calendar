@@ -47,7 +47,7 @@ function handleLoginForm(){
 			 session_start();
       		 //Store the name in the session
       		 $_SESSION['userlogin'] = $name;
-      		header("Location: success.php");
+      		header("Location: index.php");
          }
           else{ 
              echo "The combination of the login and password do not match 1 ";
