@@ -1,13 +1,20 @@
+<?php 
+session_start();
+?>
 <!-- Web Applications Project
   --
   -- Contributors: Robbie Li, Ayako Mikami, Jonathan Ho
   --
   -- index.php
+<<<<<<< HEAD
   -->
 <?php 
 
 
 ?>	
+=======
+  -->	
+>>>>>>> origin/master
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +28,9 @@
 </head>
 
 <body>
+ <form method='POST' action='logout.php'>
+	<input type = 'submit' name='logout' value='Log Out'/>
+ </form>
 		<nav class="navbar navbar-default">
 		<div class="container-fluid">
 		<div class="navbar-header">
@@ -31,7 +41,7 @@
 			<li class="active"><a href="#">Home</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="joinform.php">Sign Up</a></li>
-			<li><a href="calendarops.php">Events</a></li>
+			<li><a href="viewCalendar.php">Events</a></li>
 			<li><a href="#">News</a></li>
 			
 		  </ul>
