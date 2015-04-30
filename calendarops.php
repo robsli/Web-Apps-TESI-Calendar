@@ -45,39 +45,29 @@ function displayEvents ($number) {
 		$newday = $eventdate->format("j");//CONVERT REGULAR EVENT DATE TO LEGIBLE DAY
 		$newtime = $eventdate->format("g") . ":" . $eventdate->format('i') . " " . $eventdate->format('A');
 		$newDate = $eventdate->format('M j  |  g:i A');
- ?>
-		<div class="eventDate">
-			<span class="month">
-<?php	 
 
-
-				echo "<h2><a href= $TZlink>" . $event->summary . "</a></h2>";
-				echo "<h4>" . $newDate . "</h4>";
-				echo "<h5>" . $event->location . "</h5>";
-				echo "<br>";
-				collapse($event->description);
-
+		echo "<h2><a href= $TZlink>" . $event->summary . "</a></h2>";
+		echo "<h4>" . $newDate . "</h4>";
+		echo "<h5>" . $event->location . "</h5>";
+		echo "<br>";
+		collapse($event->description);
 ?>
-		</div>
 		<hr>
  <?php
 	}
 }
 
+function collapse ($description) {
 ?>
-<?php
-function collapse ($event) {
-?>
-<a color="@link-color" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-  Click here to read more!
-</a>
+	<a color="@link-color" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		Click here to read more!
+	</a>
 
-</button>
-<div class="collapse" id="collapseExample">
-  <div class="well">
-    <?php echo $event;?>
-  </div>
-</div>
+	<div class="collapse" id="collapseExample">
+		<div class="well">
+			<?php echo $description;?>
+		</div>
+	</div>
 <?php
 }
 ?>
