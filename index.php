@@ -19,12 +19,7 @@ session_start();
 	include ('navbar.php');
 	displayNavbar();
 ?>
-		
 
-		
-
-		
-		
 	<!-- Beginning of Content in Body-->
 	<div class="container">
 		<div class="jumbotron">
@@ -41,7 +36,7 @@ session_start();
 		  <div class="col-md-4">
 			
 			<img src="images/mit_event.jpg" class="img-responsive" alt="mit_logo"/>
-		  </div>
+			</div>
 			<div class="col-md-2">
 					<h4>MIT Media Lab</h4>
 					 <p><b>Friday, May 1st 2-5pm</b></p>

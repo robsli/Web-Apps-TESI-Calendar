@@ -2,44 +2,45 @@
 
 function displayNavbar() {
 ?>
-			<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-	<div class="row">	
-		<div class="col-md-10">
-		<div class="navbar-header">
-		  <a class="navbar-brand" href="index.php">T E S I</a>
-		</div>
-		
+		<div class="row">	
+		<div class="col-md-6">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.php">T E S I</a>
+			</div>
+			
 		  	<ul class="nav navbar-nav">
-			<li><a href="index.php">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="joinform.php">Sign Up</a></li>
-			<li><a href="viewCalendar.php">Events</a></li>
-			<li><a href="news.php">News</a></li>
-			<li><?php 
-				if (isset($_SESSION['firstname'])){
-				   echo"<a href='logout.php'>Logout</a>";
-				} else {
-			       echo "<a href='#loginModal' data-toggle='modal' data-target='#loginModal'>LogIn</a>"; 
-			       }
-			    ?>
-			    </li>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="viewCalendar.php">Events</a></li>
+				<li><a href="news.php">News</a></li>
 		   	</ul>
-		   </div>
-		  <div class="col-md-2">
-		  <ul class="nav navbar-nav">
-		  	<?php 
-		  	$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
-		  	$type = isset($_SESSION['memtype'])? $_SESSION['memtype']:"error";
-		  	if (isset($_SESSION['firstname']) AND ($type == 'admin'))
-		  			echo "<li><a href='#'>Admin Page</a></li>";
-		  	else if (isset($_SESSION['firstname']) AND ($type == 'manager'))
-		  			echo "<li><a href='#'>Manager Page</a></li>";
-		  	else if (isset($_SESSION['firstname']))
-		  		    echo "<li><a href='#'>Member Page</a></li>";
-		  	?>
-		  	
-		  	 </ul>
+		</div>
+		<div class="col-md-6">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="addEventForm.php">Add Event</a></li>
+				<?php 
+				$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
+				$type = isset($_SESSION['memtype'])? $_SESSION['memtype']:"error";
+				if (isset($_SESSION['firstname']) AND ($type == 'admin'))
+					echo "<li><a href='#'>Admin Page</a></li>";
+				else if (isset($_SESSION['firstname']) AND ($type == 'manager'))
+					echo "<li><a href='#'>Manager Page</a></li>";
+				else if (isset($_SESSION['firstname']))
+					echo "<li><a href='#'>Member Page</a></li>";
+				else 
+					echo "<li><a href='joinform.php'>Sign Up</a></li>";
+				?>	
+				<li><?php 
+					if (isset($_SESSION['firstname'])){
+					   echo"<a href='logout.php'>Logout</a>";
+					} else {
+					   echo "<a href='#loginModal' data-toggle='modal' data-target='#loginModal'>LogIn</a>"; 
+					   }
+					?>
+				</li>
+		  	</ul>
 		  </div>
 		 
 	</div>	  
