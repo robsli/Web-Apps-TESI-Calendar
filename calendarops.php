@@ -29,7 +29,7 @@ function displayEvents ($number) {
 	);
 	
 	$events = $cal->events->listEvents($calendarId, $params);
- 
+	echo "<hr>";
 	foreach ($events->getItems() as $event) {
 		$eventDateStr = $event->start->dateTime;
 		if(empty($eventDateStr)) {
@@ -51,9 +51,14 @@ function displayEvents ($number) {
 		echo "<h5>" . $event->location . "</h5>";
 		echo "<br>";
 		collapse($event->description);
-?>
-		<hr>
- <?php
+		echo "<br><br>";
+		if(isset($_SESSION['firstname']))
+			echo "<button type='button' class='btn btn-primary'>RSVP</button>";
+		else 
+			echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#loginModal'>Log In to RSVP</button>";
+
+		echo "<hr>";
+
 	}
 }
 
