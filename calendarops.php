@@ -46,16 +46,14 @@ function displayEvents ($number) {
 		$newtime = $eventdate->format("g") . ":" . $eventdate->format('i') . " " . $eventdate->format('A');
 		$newDate = $eventdate->format('M j  |  g:i A');
  ?>
-		<div>
-			<div class="eventDate">
-				<span class="month">
+		<div class="eventDate">
+			<span class="month">
 <?php	 
-				echo "<h2><a href= $TZlink>" . $event->summary . "</a></h2>";
-				echo "<h4>" . $newDate . "</h4>";
-				echo "<h5>" . $event->location . "</h5>";
-				echo "<br>". $event->description . "<br><br>";
+			echo "<h2><a href= $TZlink>" . $event->summary . "</a></h2>";
+			echo "<h4>" . $newDate . "</h4>";
+			echo "<h5>" . $event->location . "</h5>";
+			echo "<br>". $event->description . "<br><br>";
 ?>
-			</div>
 		</div>
 		<hr>
  <?php
