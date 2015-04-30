@@ -19,7 +19,12 @@ session_start();
 	include ('navbar.php');
 	displayNavbar();
 ?>
+		
 
+		
+
+		
+		
 	<!-- Beginning of Content in Body-->
 	<div class="container">
 		<div class="jumbotron">
@@ -36,12 +41,12 @@ session_start();
 		  <div class="col-md-4">
 			
 			<img src="images/mit_event.jpg" class="img-responsive" alt="mit_logo"/>
-			</div>
+		  </div>
 			<div class="col-md-2">
 					<h4>MIT Media Lab</h4>
 					 <p><b>Friday, May 1st 2-5pm</b></p>
 							  <!-- Trigger the modal with a button -->
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Learn More</button>
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal1">Learn More</button>
 					<br><br>
 					<?php 
 					if(isset($_SESSION['firstname']))
@@ -57,7 +62,7 @@ session_start();
 			 <h4>Google Cambridge</h4>
 					 <p><b>Friday, September 25th 2-5pm</b></p>
 							  <!-- Trigger the modal with a button -->
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Learn More</button>
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal2">Learn More</button>
 					<br><br>
 					<?php 
 					if(isset($_SESSION['firstname']))
@@ -68,8 +73,8 @@ session_start();
 			</div>
 	
 		
-				<!-- Modal -->
-				<div id="myModal" class="modal fade" role="dialog">
+				<!-- Modal 1 -->
+				<div id="modal1" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -82,6 +87,29 @@ session_start();
 				    <img src="images/mit_logo.png" class="img-responsive" alt="mit_logo"/>
 					<p>The MIT Media Lab is a multi-disciplinary lab with research groups focusing in on the edges and future of technology and design. Students will tour the facilities and see the following research groups/demos: Lifelong Kindergarten, cityFARM, and Viral Communications. The MIT Media Lab is the home and birthplace of successes like Guitar Hero, Echonest, Processing, Scratch, Lego Mindstorms, and the bionic prosthetics that allowed Boston bombing survivor Adrianne Haslet Davis to dance again.</p>
 				    <p><a href ='http://www.media.mit.edu/' onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">View Website</a></p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				  </div>
+				</div>
+
+				</div>
+				</div>
+			  <!-- End of Modal -->
+			  
+			  <!-- Modal 2 -->
+				<div id="modal2" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">MIT Media Lab</h4>
+				  </div>
+				  <div class="modal-body">
+				    <img src="images/googlelogo.png" class="img-responsive" alt="mit_logo"/>
+					<p>Google. Nuff said.</p>
 				  </div>
 				  <div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
