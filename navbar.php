@@ -9,60 +9,13 @@ function displayNavbar() {
 		<div class="navbar-header">
 		  <a class="navbar-brand" href="index.php">T E S I</a>
 		</div>
-<<<<<<< HEAD
-		<div>
-			<ul class="nav navbar-nav">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="viewCalendar.php">Events</a></li>
-				<li><a href="news.php">News</a></li>	
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="addEventForm.php">Add Event</a></li>
-				<li><a href="joinform.php">Sign Up</a></li>
-				<li><a href="#">Member Page</a></li>
-				<li><?php 
-					if (isset($_SESSION['firstname'])){
-					   echo"<a href='logout.php'>Logout</a>";
-					} else {
-					   echo "<a href='#loginModal' data-toggle='modal' data-target='#loginModal'>LogIn</a>"; 
-					   }
-					?>
-				</li>	
-			</ul>
-		</div>
-		</div>
-	</nav>
-
-	<!-- Modal -->
-		<div id="loginModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-
-		<!-- Modal content-->
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h4 class="modal-title">Log In</h4>
-		  </div>
-		  <div class="modal-body">
-			<form method='POST' action='login.php'>
-			<h3>Log In</h3> 
-				BC Email Address:<br>
-				<input type='text' name='u' value=''/>
-				<br>Password:<br>
-				<input type='password' name='pw' value=''/>
-				<br><br>
-				<input class="btn btn-warning" type='submit' name='login' value='Log In'/>
-			</form>
-=======
->>>>>>> 8c1ff412e340288afde7110d1b76cf3817277928
 		
 		  	<ul class="nav navbar-nav">
 			<li><a href="index.php">Home</a></li>
 			<li><a href="#">About</a></li>
 			<li><a href="joinform.php">Sign Up</a></li>
 			<li><a href="viewCalendar.php">Events</a></li>
-			<li><a href="#">News</a></li>
+			<li><a href="news.php">News</a></li>
 			<li><?php 
 				if (isset($_SESSION['firstname'])){
 				   echo"<a href='logout.php'>Logout</a>";
@@ -130,8 +83,6 @@ function displayNavbar() {
 			</div>
 			</div>
 		<!-- End of Modal-->
-		
-		
 	
 <?php
 }
