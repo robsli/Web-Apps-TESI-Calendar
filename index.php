@@ -4,6 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<title>Home Page</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,12 +15,16 @@ session_start();
 </head>
 
 <body>
-
 <?php
 	include ('navbar.php');
 	displayNavbar();
 ?>
-	
+		
+
+		
+
+		
+		
 	<!-- Beginning of Content in Body-->
 	<div class="container">
 		<div class="jumbotron">
@@ -27,17 +32,47 @@ session_start();
 			<p class="text-center">Boston College Technology, Entrepreneurship, and Social Innovation</p>
 			<?php 
 			$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
- 			echo "<p class='text-center'>Hello $user, you have successfully logged in.</p>";
+ 			if(isset($_SESSION['firstname']))
+ 				echo "<p class='text-center'>Hello $user, you are logged in.</p>";
  			?>
 		</div>
+		<h3 class="text-center">Upcoming Events</h3><br>
 		<div class="row">
-			<div class="col-sm-4">
-			  <h3>Upcoming Event</h3>
-			    <h4>MIT Media Lab</h4>
-			     <p><b>Friday, May 1st 2-5pm</b></p>
-						  <!-- Trigger the modal with a button -->
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Learn More</button>
-
+		  <div class="col-md-4">
+			
+			<img src="images/mit_event.jpg" class="img-responsive" alt="mit_logo"/>
+		  </div>
+			<div class="col-md-2">
+					<h4>MIT Media Lab</h4>
+					 <p><b>Friday, May 1st 2-5pm</b></p>
+							  <!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Learn More</button>
+					<br><br>
+					<?php 
+					if(isset($_SESSION['firstname']))
+						echo "<button type='button' class='btn btn-primary'>RSVP</button>";
+					else 
+						echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#loginModal'>Log In to RSVP</button>";
+					?>
+			</div>
+			<div class="col-md-4">
+			<img src="images/google_event.jpg" class="img-responsive" alt="mit_logo"/>
+			</div>
+			<div class="col-md-2">
+			 <h4>Google Cambridge</h4>
+					 <p><b>Friday, September 25th 2-5pm</b></p>
+							  <!-- Trigger the modal with a button -->
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Learn More</button>
+					<br><br>
+					<?php 
+					if(isset($_SESSION['firstname']))
+						echo "<button type='button' class='btn btn-primary'>RSVP</button>";
+					else 
+						echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#loginModal'>Log In to RSVP</button>";
+					?>
+			</div>
+	
+		
 				<!-- Modal -->
 				<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
@@ -61,11 +96,11 @@ session_start();
 				</div>
 				</div>
 			  <!-- End of Modal -->
-			  <button type="button" class="btn btn-primary">RSVP</button>
+			  
 			</div>
 
 			
-		</div>
+	
 	</div>
 		
 		<br><br>
