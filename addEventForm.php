@@ -43,40 +43,40 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="school">Title:</label>
-			<div class="col-sm-6">
-				<input type='text' name='eventTitle' />
+			<div class="col-sm-4">
+				<input type='text' class='form-control' name='eventTitle' />
 			</div>
 		</div>
     
 		<div class="form-group">
 			<label class="control-label col-sm-3" for ="major">Location</label>
-			<div class="col-sm-6">
-				<input type='text' name='eventLocation' />
+			<div class="col-sm-4">
+				<input type='text' class='form-control' name='eventLocation' />
 			</div>
 		</div>
     
 		<div class="form-group">
 			<label class="control-label col-sm-3"  for ='class'>Date</label>
-			<div class="col-sm-6">
-				<input type='date' name='eventDate' />
+			<div class="col-sm-4">
+				<input type='date' class='form-control' name='eventDate' />
 		   </div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3"  for ='class'>Start Time</label>
-			<div class="col-sm-6">
-				<input type='time' name='eventStart' />
+			<div class="col-sm-4">
+				<input type='time' class='form-control' name='eventStart' />
 		   </div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3"  for ='class'>End Time</label>
-			<div class="col-sm-6">
-				<input type='time' name='eventEnd' />
+			<div class="col-sm-4">
+				<input type='time' class='form-control' name='eventEnd' />
 		   </div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3"  for ='class'>Event Description</label>
-			<div class="col-sm-6">
-				<textarea row = '4' cols='50' name='eventDescription'></textarea>
+			<div class="col-sm-4">
+				<textarea row = '4' cols='50' class='form-control' name='eventDescription'></textarea>
 		   </div>
 		</div>
 	    <div class="form-group"> 

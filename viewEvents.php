@@ -34,7 +34,7 @@
 		<div class='col-md-5'>
 			<h1>Upcoming Events</h1><br>
 			<div class='pre-scrollable' id='scrollableregion'>
-				<?php displayEvents(5); ?>
+				<?php displayEvents(10); ?>
 			</div>
 		</div>
 		<div class='col-md-5'>
