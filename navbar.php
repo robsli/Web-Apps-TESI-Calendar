@@ -13,7 +13,7 @@ function displayNavbar() {
 		  	<ul class="nav navbar-nav">
 				<li><a href="index.php">Home</a></li>
 				<li><a href="#">About</a></li>
-				<li><a href="viewCalendar.php">Events</a></li>
+				<li><a href="viewEvents.php">Events</a></li>
 				<li><a href="news.php">News</a></li>
 		   	</ul>
 		</div>

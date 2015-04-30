@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Add Event</title>
+	<title>Add Event Form</title>
     <script src="jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="joinscript.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
