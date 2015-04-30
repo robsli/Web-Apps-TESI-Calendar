@@ -49,10 +49,18 @@ function displayEvents ($number) {
 		<div class="eventDate">
 			<span class="month">
 <?php	 
+<<<<<<< HEAD
 			echo "<h2><a href= $TZlink>" . $event->summary . "</a></h2>";
 			echo "<h4>" . $newDate . "</h4>";
 			echo "<h5>" . $event->location . "</h5>";
 			echo "<br>". $event->description . "<br><br>";
+=======
+				echo "<h2><a href= $TZlink>" . $event->summary . "</a></h2>";
+				echo "<h4>" . $newDate . "</h4>";
+				echo "<h5>" . $event->location . "</h5>";
+				echo "<br>";
+				collapse($event->description);
+>>>>>>> f1da2d38cf8d01e53e390e8f6ecf2194d320464e
 ?>
 		</div>
 		<hr>
@@ -60,4 +68,20 @@ function displayEvents ($number) {
 	}
 }
 
+?>
+<?php
+function collapse ($event) {
+?>
+<a color="@link-color" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Click here to read more!
+</a>
+
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+    <?php echo $event;?>
+  </div>
+</div>
+<?php
+}
 ?>
