@@ -42,6 +42,21 @@
 			</div>
 		</div>
 		<div class="form-group">
+		  <label class="control-label col-sm-3" for="school">Organization:</label>
+			<div class="col-sm-6">
+			   <select name="school" id="school">
+				<option value = 'default' selected = 'selected'>Please select an organization</option>
+				<option value="BCVC">Boston College Venture Competition</option>
+				<option value="CSS">Computer Science Society</option>
+				<option value="GTC">Graduate Tech Club</option>
+				<option value="ISA">Information Systems Academy</option>
+				<option value="SEED">Social Entrepreneurs Envisioning Development </option>
+				<option value="WiCS">Women in Computer Science</option>
+				<option value="WIN">Women Innovators Network</option>
+			   </select>
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="control-label col-sm-3" for="school">Title:</label>
 			<div class="col-sm-4">
 				<input type='text' class='form-control' name='eventTitle' />

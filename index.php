@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
 
-	<title>Home Page</title>
+	<title>Home</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css">
@@ -17,14 +17,10 @@ session_start();
 <body>
 <?php
 	include ('navbar.php');
+	include ('calendarops.php');
 	displayNavbar();
 ?>
-		
-
-		
-
-		
-		
+	
 	<!-- Beginning of Content in Body-->
 	<div class="container">
 		<div class="jumbotron">
@@ -32,20 +28,22 @@ session_start();
 			<p class="text-center">Boston College Technology, Entrepreneurship, and Social Innovation</p>
 			<?php 
 			$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
- 			if(isset($_SESSION['firstname']))
+ 			if(isset($_SESSION['firstname']) && $_SESSION['firstname'] != 'error')
  				echo "<p class='text-center'>Hello $user, you are logged in.</p>";
+			else
+				echo "<p class='text-center'>Welcome to TESI. Please log in to your account or sign up!</p>";
  			?>
 		</div>
 		<h3 class="text-center">Upcoming Events</h3><br>
+	<!--
 		<div class="row">
-		  <div class="col-md-4">
-			
-			<img src="images/mit_event.jpg" class="img-responsive" alt="mit_logo"/>
-		  </div>
+			<div class="col-md-4">
+				<img src="images/mit_event.jpg" class="img-responsive" alt="mit_logo"/>
+			</div>
 			<div class="col-md-2">
 					<h4>MIT Media Lab</h4>
 					 <p><b>Friday, May 1st 2-5pm</b></p>
-							  <!-- Trigger the modal with a button -->
+
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal1">Learn More</button>
 					<br><br>
 					<?php 
@@ -61,7 +59,6 @@ session_start();
 			<div class="col-md-2">
 			 <h4>Google Cambridge</h4>
 					 <p><b>Friday, September 25th 2-5pm</b></p>
-							  <!-- Trigger the modal with a button -->
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal2">Learn More</button>
 					<br><br>
 					<?php 
@@ -73,11 +70,10 @@ session_start();
 			</div>
 	
 		
-				<!-- Modal 1 -->
 				<div id="modal1" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 
-				<!-- Modal content-->
+				<!-- Modal content
 				<div class="modal-content">
 				  <div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -95,13 +91,13 @@ session_start();
 
 				</div>
 				</div>
-			  <!-- End of Modal -->
+			  <!-- End of Modal
 			  
-			  <!-- Modal 2 -->
+			  <!-- Modal 2
 				<div id="modal2" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 
-				<!-- Modal content-->
+				<!-- Modal content
 				<div class="modal-content">
 				  <div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -118,17 +114,25 @@ session_start();
 
 				</div>
 				</div>
-			  <!-- End of Modal -->
+			  <!-- End of Modal
 			  
-			</div>
+		</div> -->
+		<div class='row'>
+			<?php
+			for ($i=0; $i<4; $i++) {
+				?>
+				<div class='col-md-3'>
+					<?php displayEventsHome($i) ?>
+				</div>
+				<?php
+			}
+			?>
+		</div>
 
-			
-	
 	</div>
 		
-		<br><br>
+	<br><br>
 
-   
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
