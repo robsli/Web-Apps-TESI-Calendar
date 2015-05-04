@@ -1,3 +1,7 @@
+<?php		
+	header('Location: index.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +10,8 @@
 
 <body>
 <?php		
+	header('Location: viewEvents.php');
+	include 'dboperation.php';
 	$classArray = array("2015","2016","2017","2018");
 
 	$dbc = connecttoDB("lifm", "qmJriism", "lifm");
@@ -37,7 +43,7 @@
 		//$trimResult = mysqli_query($dbc, $trimQuery);
 
 		$insertResult = mysqli_query($dbc, $insertQuery);
-		
+		/*
 		if ($insertResult){
 			returnHome();
 			echo "Record was added. Thank you!";
@@ -46,6 +52,7 @@
 			goBack();
 			die('Invalid query: $insertQuery'. mysqli_error($dbc));
 		}	
+		*/
 	}
 	else{
 		goBack();
@@ -66,8 +73,4 @@ function goBack(){
 	echo"<button type='button' onclick='history.back();'>Try Again</button><br><br>";
 }
 
-function connectToDB($user, $pw, $dbname){
-		$dbc = @mysqli_connect("localhost", $user, $pw, $dbname) 
-		OR die("Could not connect to MySQL on cscilab: ".	mysqli_connect_error());
-		return $dbc;
-}
+?>

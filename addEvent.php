@@ -1,8 +1,10 @@
 <?php 
+	header('Location: viewEvents.php');
 	session_start();
 	require_once 'google-api-php-client/src/Google/autoload.php';
 	require_once 'google-api-php-client/src/Google/Client.php';
 	require_once 'google-api-php-client/src/Google/Service/Calendar.php';
+	include 'dboperation.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,17 +26,21 @@
 	include ('navbar.php');
 	displayNavbar();
 
-	if (isset($_POST['eventTitle']) && isset($_POST['eventLocation']) 
-		&& isset($_POST['eventDate']) && isset($_POST['eventStart'])
-		&& isset($_POST['eventEnd']) && isset($_POST['addEvent'])) {
+	if (isset($_POST['org']) && isset($_POST['eventTitle']) 
+		&& isset($_POST['eventLocation']) && isset($_POST['eventDate']) 
+		&& isset($_POST['eventStart']) && isset($_POST['eventEnd']) 
+		&& isset($_POST['addEvent'])) {
 			$summary = $_POST['eventTitle'];
 			$location = $_POST['eventLocation'];
+			$org = $_POST['org'];
+			$date = $_POST['eventDate'];
+			$start = $_POST['eventStart'];
 			$startTime = formatDate($_POST['eventDate'], $_POST['eventStart']);
 			$endTime = formatDate($_POST['eventDate'], $_POST['eventEnd']);
 			$description = $_POST['eventDescription'];
 			addEvent($summary, $location, $startTime, $endTime, $description);
+			insertEvent($summary, $location, $org, $date, $start);
 	}
-
 ?>
 	</body>
 </html>
@@ -73,7 +79,6 @@ function addEvent($summary, $location, $startTime, $endTime, $description) {
 
 	$service = new Google_Service_Calendar($client);  
 	$result = $service->acl->insert('primary', $rule);
-
 	
 	// Create new Google Event
 	$event = new Google_Service_Calendar_Event();
@@ -93,11 +98,27 @@ function addEvent($summary, $location, $startTime, $endTime, $description) {
 	$event->setEnd($end);
 
 	$createdEvent = $service->events->insert("primary", $event);
+}
+
+function insertEvent($title, $location, $org, $date, $start) {
+	$dbc = connecttoDB("lifm", "qmJriism", "lifm");
+	$query = "insert into TESI_EVENTS values (DEFAULT, '$title', '$location', '$org', $date, '$start')";
+	$results = mysqli_query($dbc, $query);
+
 } 
 
 function formatDate($date, $time) {
 	$result = $date . "T" . $time . ":00.000";
 	return $result;
+}
+
+function returnHome(){
+	echo" <form action='index.php'>
+	<input type='submit' value='Home'></form><br>";
+}
+
+function goBack(){
+	echo"<button type='button' onclick='history.back();'>Try Again</button><br><br>";
 }
 
 ?>

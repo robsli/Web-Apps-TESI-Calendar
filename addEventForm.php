@@ -42,9 +42,9 @@
 			</div>
 		</div>
 		<div class="form-group">
-		  <label class="control-label col-sm-3" for="school">Organization:</label>
+		  <label class="control-label col-sm-3" for="org">Organization:</label>
 			<div class="col-sm-6">
-			   <select name="school" id="school">
+			   <select name="org" id="org">
 				<option value = 'default' selected = 'selected'>Please select an organization</option>
 				<option value="BCVC">Boston College Venture Competition</option>
 				<option value="CSS">Computer Science Society</option>

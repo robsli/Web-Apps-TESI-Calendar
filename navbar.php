@@ -22,15 +22,16 @@ function displayNavbar() {
 					<?php 
 					$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
 					$type = isset($_SESSION['memtype'])? $_SESSION['memtype']:"error";
+					echo "<li>Hello $type</li>";
 					if (isset($_SESSION['firstname']) AND ($type == 'admin')) {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";
-						echo "<li><a href='#'>Admin Page</a></li>";
+						echo "<li><a href='adminform.php'>Admin Page</a></li>";
 					} else if (isset($_SESSION['firstname']) AND ($type == 'manager')) {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";
 						echo "<li><a href='#'>Manager Page</a></li>";
-					} else if (isset($_SESSION['firstname']))
+					} else if (isset($_SESSION['firstname'])) {
 						echo "<li><a href='#'>Member Page</a></li>";
-					else 
+					} else 
 						echo "<li><a href='joinform.php'>Sign Up</a></li>";
 					?>	
 				<li><?php 
