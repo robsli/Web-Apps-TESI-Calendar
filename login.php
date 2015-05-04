@@ -44,6 +44,7 @@ function handleLoginForm(){
      		 $row = mysqli_fetch_assoc($result);
      		 $email = $row['email'];
      		 $firstname = $row['firstname'];
+			 $type = $row['membershiptype'];
      		 
 			 session_start();
       		 //Store the email in the session
@@ -51,6 +52,8 @@ function handleLoginForm(){
       		 
       		 //Store the name in the session.
       		 $_SESSION['firstname'] = $firstname;
+			 
+			 $_SESSION['memtype'] = $type;
       		 
       		header("Location: index.php");
          }
