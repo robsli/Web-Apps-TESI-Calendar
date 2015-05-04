@@ -32,7 +32,7 @@
 	include ('navbar.php');
 	displayNavbar();
 ?>
-	
+
 	<form class="form-horizontal" role="form" method = "post" action="addEvent.php">
 		<div class="form-group">
 			<div class="col-sm-1">
@@ -45,7 +45,7 @@
 		  <label class="control-label col-sm-3" for="org">Organization:</label>
 			<div class="col-sm-6">
 			   <select name="org" id="org">
-				<option value = 'default' selected = 'selected'>Please select an organization</option>
+				<option value = '' selected = 'selected'>Please select an organization</option>
 				<option value="BCVC">Boston College Venture Competition</option>
 				<option value="CSS">Computer Science Society</option>
 				<option value="GTC">Graduate Tech Club</option>

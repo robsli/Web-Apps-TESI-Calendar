@@ -25,6 +25,7 @@ function displayNavbar() {
 					echo "<li>Hello $type</li>";
 					if (isset($_SESSION['firstname']) AND ($type == 'admin')) {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";
+						echo "<li><a href='#'>Manager Page</a></li>";
 						echo "<li><a href='adminform.php'>Admin Page</a></li>";
 					} else if (isset($_SESSION['firstname']) AND ($type == 'manager')) {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";

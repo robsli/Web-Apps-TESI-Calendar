@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +16,9 @@
 <body>
 
 <?php
+	include 'dboperation.php';
+	//Set default timezone
+	date_default_timezone_set('America/New_York');
 
 	$collegeMajorArray = 
 		array(
@@ -32,13 +38,13 @@
 				Slavic Studies, Sociology, Studio Art, Theater, Theology",
 				
 			"Connell School of Nursing" =>
-				"",
+				"Nursing",
 				
 			"Lynch School of Education" =>
 				"Elementary Education, Secondary Education, Applied Psychology and Human Development,
 				Interdisciplinary Majors");
 				
-		$classArray = array("2015","2016","2017","2018");
+		$classArray = array(date("Y"),date("Y")+1,date("Y")+2,date("Y")+3);
 		
 	include ('navbar.php');
 	displayNavbar();
@@ -48,8 +54,10 @@
 	$tablequery = "SELECT * FROM TESI_MEMBERSHIP"; 
 	$tableresult = mysqli_query($dbc, $tablequery);
 	
-	echo"<h2>TESI_MEMBERSHIP</h2>";
-	echo "<table id = 'adminTable'>";
+	echo "<div class='col-md-1'></div>";
+	echo "<div class='container'>";
+	echo"<h2>TESI Membership</h2>";
+	echo "<table id = 'adminTable' class='table table-striped'>";
 	$color = 'white';
 	echo"<tr style ='background-color:$color'>
 		<th>ID</th>
@@ -67,7 +75,7 @@
 					. $row['classyear'] . "</td><td>" . $row['membershiptype'] . "</td></tr>";
 		echo "</tbody>";  
 	}
-	echo "</table><br>"; ?>
+	echo "</table></div><br>"; ?>
 
 	<form class="form-horizontal" role="form" method = "post" action="adminoperation.php">
 		<input type="hidden" name="ID" id="ID"/>
@@ -95,20 +103,21 @@
        </div>
     </div>
     
-     <div class="form-group">
-      <label class="control-label col-sm-3" for ="major">Major</label>
-      <div class="col-sm-6">
-           <select name ="major" id="major">
+    <div class="form-group">
+		<label class="control-label col-sm-3" for ="major">Major</label>
+		<div class="col-sm-6">
+			<select name ="major" id="major">
 			<?php
-			foreach ($collegeMajorArray as $school => $major){
+				foreach ($collegeMajorArray as $school => $major){
 					echo "<optgroup label='$school'>\n";
 					$majorArray = explode(",",$major);
 					foreach ($majorArray as $value){
 						echo "\t\t<option value='$value'>$value</option>\n";
 					}
 					echo "</optgroup>\n\n";
-			}?>
-		</select>
+				}
+			?>
+			</select>
 		<script>
 			$("#school").on("change", function() {
 				$states = $("#major");
@@ -118,18 +127,20 @@
 			});
 		</script>
        </div>
-    </div>
+	</div>
 
-	 <div class="form-group">
-      <label class="control-label col-sm-3"  for ='class'>Class</label>
-      <div class="col-sm-6">
-           <select name="class" id ="class"><?php
-           echo "<option value=''>Class Year</option>\n";
-			foreach ($classArray as $class){
-      			echo "<option value=$class>$class</option>\n";
-      			}?>;
-		</select>
-       </div>
+	<div class="form-group">
+		<label class="control-label col-sm-3"  for ='class'>Class</label>
+		<div class="col-sm-6">
+			<select name="class" id ="class">
+			<?php
+				echo "<option value=''>Class Year</option>\n";
+				foreach ($classArray as $class){
+					echo "<option value=$class>$class</option>\n";
+				}
+			?>;
+			</select>
+		</div>
     </div>
     
     <div class="form-group">
@@ -145,7 +156,7 @@
     </div>
     
 		<div class="col-sm-offset-3 col-sm-10">
-     		<input class="btn btn-default" type = "reset" name = 'reset' value  = 'Reset'/><br>
+     		<input class="btn btn-default" type = "reset" name = 'reset' value  = 'Reset'/>
 			<input class="btn btn-default" type = 'submit' name = 'changerecord' value = 'Change Record'/>
 		</div>
     
@@ -208,12 +219,6 @@
 </html>
 
 <?php
-function connectToDB($user, $pw, $dbname){
-		$dbc = @mysqli_connect("localhost", $user, $pw, $dbname) 
-		OR die("Could not connect to MySQL on cscilab: ".	mysqli_connect_error());
-		return $dbc;
-}
-
 function textInput($name,$display){
 	$error = $name . "error";
 	?><div class="form-group">
