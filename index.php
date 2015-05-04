@@ -29,7 +29,7 @@ session_start();
 			<?php 
 			$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
  			if(isset($_SESSION['firstname']) && $_SESSION['firstname'] != 'error')
- 				echo "<p class='text-center'>Hello $user, you are logged in.</p>";
+ 				echo "<p class='text-center'>Hello $user, welcome back!</p>";
 			else
 				echo "<p class='text-center'>Welcome to TESI. Please log in to your account or sign up!</p>";
  			?>
