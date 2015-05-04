@@ -35,11 +35,12 @@
 			$org = $_POST['org'];
 			$date = $_POST['eventDate'];
 			$start = $_POST['eventStart'];
+			$end = $_POST['eventEnd'];
 			$startTime = formatDate($_POST['eventDate'], $_POST['eventStart']);
 			$endTime = formatDate($_POST['eventDate'], $_POST['eventEnd']);
 			$description = $_POST['eventDescription'];
 			$eventId = addEvent($summary, $location, $startTime, $endTime, $description);
-			insertEvent($summary, $location, $org, $date, $start, $eventId);
+			insertEvent($summary, $location, $org, $date, $start, $end, $eventId);
 	}
 ?>
 	</body>
@@ -102,9 +103,9 @@ function addEvent($summary, $location, $startTime, $endTime, $description) {
 	return $createdEvent->getId();
 }
 
-function insertEvent($title, $location, $org, $date, $start, $eventId) {
+function insertEvent($title, $location, $org, $date, $start, $end, $eventId) {
 	$dbc = connecttoDB("lifm", "qmJriism", "lifm");
-	$query = "insert into TESI_EVENTS values (DEFAULT, '$title', '$location', '$org', '$date', '$start', '$eventId')";
+	$query = "insert into TESI_EVENTS values (DEFAULT, '$title', '$location', '$org', '$date', '$start', '$end', '$eventId')";
 	$results = mysqli_query($dbc, $query);
 } 
 

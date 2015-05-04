@@ -35,6 +35,9 @@ session_start();
  			?>
 		</div>
 		<h3 class="text-center">Upcoming Events</h3><br>
+
+<?php
+/*
 	<!--
 		<div class="row">
 			<div class="col-md-4">
@@ -117,6 +120,8 @@ session_start();
 			  <!-- End of Modal
 			  
 		</div> -->
+*/
+?>
 		<div class='row'>
 			<?php
 			for ($i=0; $i<4; $i++) {
