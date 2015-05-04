@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +23,13 @@
 	
 	$dbc = connecttoDB("lifm", "qmJriism", "lifm");
 	
-	$tablequery = "SELECT * FROM TESI EVENTS"; 
+	$tablequery = "SELECT * FROM TESI_EVENTS"; 
 	$tableresult = mysqli_query($dbc, $tablequery);
-	
-	echo"<h2>TESI_EVENTS</h2>";
-	echo "<table id = 'managerTable'>";
+
+	echo "<div class='col-md-1'></div>";
+	echo "<div class='container'>";
+	echo"<h2>TESI Events</h2>";
+	echo "<table id = 'managerTable' class='table table-striped'>";
 	$color = 'white';
 	echo"<tr style ='background-color:$color'>
 		<th>ID</th>
@@ -40,7 +46,7 @@
 					. $row['endtime'] . "</td></tr>";
 		echo "</tbody>";  
 	}
-	echo "</table><br>"; ?>
+	echo "</table></div><br>"; ?>
 
 	<form class="form-horizontal" role="form" method = "post" action="managerOperation.php">
 		<input type="hidden" name="ID" id="ID"/>
@@ -70,7 +76,7 @@
 		?>
     
 		<div class="col-sm-offset-3 col-sm-10">
-     		<input class="btn btn-default" type = "reset" name = 'reset' value  = 'Reset'/><br>
+     		<input class="btn btn-default" type = "reset" name = 'reset' value  = 'Reset'/>
 			<input class="btn btn-default" type = 'submit' name = 'changerecord' value = 'Change Record'/>
 		</div>
     

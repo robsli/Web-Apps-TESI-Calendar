@@ -22,14 +22,13 @@ function displayNavbar() {
 					<?php 
 					$user = isset($_SESSION['firstname'])? $_SESSION['firstname']:"error";
 					$type = isset($_SESSION['memtype'])? $_SESSION['memtype']:"error";
-					echo "<li>Hello $type</li>";
 					if (isset($_SESSION['firstname']) AND ($type == 'admin')) {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";
-						echo "<li><a href='#'>Manager Page</a></li>";
-						echo "<li><a href='adminform.php'>Admin Page</a></li>";
+						echo "<li><a href='managerForm.php'>Manage Events</a></li>";
+						echo "<li><a href='adminform.php'>Admin</a></li>";
 					} else if (isset($_SESSION['firstname']) AND ($type == 'manager')) {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";
-						echo "<li><a href='#'>Manager Page</a></li>";
+						echo "<li><a href='#'>Manage Events</a></li>";
 					} else if (isset($_SESSION['firstname'])) {
 						echo "<li><a href='#'>Member Page</a></li>";
 					} else 
@@ -72,7 +71,7 @@ function displayNavbar() {
 			<h3>Forgot Password?</h3> 
 			<p>Forgot Password? Enter email address below to have a new password be sent to you.</p>
 			<p><form method='POST' action='login.php'>
-			<input type='text' name='email' value='Enter BC Email Address'/>
+			<input type='text' name='email' placeholder = 'Enter BC Email Address'/>
 			<br><br>
 			<input type='submit' class="btn btn-danger" name='resetpw' value='Reset Password'/>
 			</form></p>
