@@ -24,6 +24,8 @@
 
 <?php
 	include ('navbar.php');
+	include ('calendarops.php');
+	
 	displayNavbar();
 
 	if (isset($_POST['org']) && isset($_POST['eventTitle']) 
@@ -108,11 +110,6 @@ function insertEvent($title, $location, $org, $date, $start, $end, $eventId) {
 	$query = "insert into TESI_EVENTS values (DEFAULT, '$title', '$location', '$org', '$date', '$start', '$end', '$eventId')";
 	$results = mysqli_query($dbc, $query);
 } 
-
-function formatDate($date, $time) {
-	$result = $date . "T" . $time . ":00.000";
-	return $result;
-}
 
 function returnHome(){
 	echo" <form action='index.php'>

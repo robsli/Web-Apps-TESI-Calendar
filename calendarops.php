@@ -183,6 +183,11 @@ function updateEvent($summary, $location, $startTime, $endTime, $eventID) {
 	$createdEvent = $service->events->update("primary", $event->getId(), $event);
 }
 
+function formatDate($date, $time) {
+	$result = $date . "T" . $time . ":00.000";
+	return $result;
+}
+
 function collapse ($description) {
 ?>
 	<a color="@link-color" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

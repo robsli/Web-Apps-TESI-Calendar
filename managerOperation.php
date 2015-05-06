@@ -36,7 +36,9 @@
 		WHERE ID='$ID'";
 		
 		$updateResult = mysqli_query($dbc, $updateQuery);
-		updateEvent($summary, $location, $startTime, $endTime, $ID);
+		$startTime = formatDate($date, $starttime);
+		$endTime = formatDate($date, $endtime);
+		updateEvent($title, $location, $startTime, $endTime, $eventID);
 	}
 	mysqli_close($dbc);	
 	?>
@@ -52,9 +54,4 @@ function returnHome(){
 function goBack(){
 	echo"<button type='button' onclick='history.back();'>Try Again</button><br><br>";
 }
-
-function connectToDB($user, $pw, $dbname){
-		$dbc = @mysqli_connect("localhost", $user, $pw, $dbname) 
-		OR die("Could not connect to MySQL on cscilab: ".	mysqli_connect_error());
-		return $dbc;
-}
+?>
