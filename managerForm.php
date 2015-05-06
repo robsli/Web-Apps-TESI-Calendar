@@ -39,18 +39,20 @@
     	<th>Location</th>
     	<th>Date</th>
     	<th>Start Time</th>
-    	<th>End Time</th></tr>";
+    	<th>End Time</th>
+    	<th>Event ID</th></tr>";
 	while($row = mysqli_fetch_array($tableresult, MYSQLI_ASSOC)){   //Creates a loop to loop through results
 		echo "<tbody>";
 		echo "<tr style='background-color: $color'><td>" . $row['ID'] . "</td><td>" . $row['club'] . "</td><td>" . $row['title'] . "</td><td>"
 					. $row['location'] . "</td><td>" . $row['dateofvisit'] . "</td><td>" . $row['starttime'] . "</td><td>" 
-					. $row['endtime'] . "</td></tr>";
+					. $row['endtime'] . "</td><td>" . $row['eventID'] . "</td></tr>";
 		echo "</tbody>";  
 	}
 	echo "</table></div><br>"; ?>
 
 	<form class="form-horizontal" role="form" method = "post" action="managerOperation.php">
 		<input type="hidden" name="ID" id="ID"/>
+		<input type="hidden" name="eventID" id="eventID"/>
 		
 		<div class="form-group">
 		  <label class="control-label col-sm-3" for="club">Organization:</label>
@@ -110,6 +112,7 @@
 					var f4 = document.getElementById('date');
 					var f5 = document.getElementById('starttime');
 					var f6 = document.getElementById('endtime');
+					var f7 = document.getElementById('eventID');
 					f0.value = cells[0].innerHTML;
 					f1.value = cells[1].innerHTML;
 					f2.value = cells[2].innerHTML;
@@ -117,6 +120,7 @@
 					f4.value = cells[4].innerHTML;
 					f5.value = cells[5].innerHTML;
 					f6.value = cells[6].innerHTML;
+					f7.value = cells[7].innerHTML;
 					};
 				}
 			}
