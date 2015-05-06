@@ -4,6 +4,14 @@
 	String.prototype.capitalize = function() {
     	return this.charAt(0).toUpperCase() + this.slice(1);
 	}
+	
+	String.prototype.lowercase = function() {
+    	return this.charAt(0).toLowerCase() + this.slice(1);
+	}
+	
+	String.prototype.contains = function(it) { 
+		return this.indexOf(it) != -1; 
+	};
 
 	function validatefield(fieldname){
 		var field = document.getElementById(fieldname);
@@ -20,11 +28,51 @@
 			}
 		}
 		if (fieldvalue=='' || fieldvalue=="0") {
-			errorArray.push(fieldname);
+			if (fieldname.contains("event")){
+				errorArray.push(fieldname.substring(5));
+			}
+			else{
+				errorArray.push(fieldname);
+			}
 			return false;
 		}
 		return true;
 	}
+	
+	function validateAddEvent(){
+		var titlevalid = validatefield("eventTitle");
+		var locationvalid = validatefield("eventLocation");
+		var datevalid = validatefield("eventDate");
+		var starttimevalid = validatefield("eventStart");
+		var endttimevalid = validatefield("eventEnd");
+		
+		if (!titlevalid || !locationvalid || !datevalid || !starttimevalid ||
+			!endttimevalid){		
+			var errormessage = "";
+			for (var i = 0; i < errorArray.length; i++){
+				if (i==0){
+					if (i==errorArray.length-1){
+						errormessage += errorArray[i].capitalize() + " was not filled out.";
+						break;
+					}
+					else{
+						errormessage += errorArray[i].capitalize() + ", ";
+					}
+				}
+				else if (i==errorArray.length-1){
+					errormessage += "and " + errorArray[i].lowercase() + " were not filled out.";
+				}
+				else{
+					errormessage += errorArray[i].lowercase() + ", ";
+				}
+			}
+				writetoelement("errormessage", errormessage,"firebrick");
+				return false;
+				}
+		else{
+			return true;
+		}
+		}
 	
 	function validate(){
 		var firstnamevalid = validatefield("firstname");

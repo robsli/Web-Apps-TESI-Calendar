@@ -10,6 +10,7 @@
     <script type="text/javascript" src="joinscript.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css">
+	<script type="text/javascript" src="joinscript.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
@@ -37,7 +38,7 @@
 	displayNavbar();
 ?>
 
-	<form class="form-horizontal" role="form" method = "post" action="addEvent.php">
+	<form class="form-horizontal" role="form" method = "post" onsubmit="return validateAddEvent();"  action="addEvent.php">
 		<div class="form-group">
 			<div class="col-sm-1">
 			</div>
@@ -63,33 +64,33 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3" for="school">Title:</label>
 			<div class="col-sm-4">
-				<input type='text' class='form-control' name='eventTitle' />
+				<input type='text' class='form-control' name='eventTitle' id='eventTitle' />
 			</div>
 		</div>
     
 		<div class="form-group">
 			<label class="control-label col-sm-3" for ="major">Location</label>
 			<div class="col-sm-4">
-				<input type='text' class='form-control' name='eventLocation' />
+				<input type='text' class='form-control' name='eventLocation' id='eventLocation' />
 			</div>
 		</div>
     
 		<div class="form-group">
 			<label class="control-label col-sm-3"  for ='class'>Date</label>
 			<div class="col-sm-4">
-				<input type='date' class='form-control' name='eventDate' />
+				<input type='date' class='form-control' name='eventDate' id='eventDate' />
 		   </div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3"  for ='class'>Start Time</label>
 			<div class="col-sm-4">
-				<input type='time' class='form-control' name='eventStart' />
+				<input type='time' class='form-control' name='eventStart' id='eventStart' />
 		   </div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3"  for ='class'>End Time</label>
 			<div class="col-sm-4">
-				<input type='time' class='form-control' name='eventEnd' />
+				<input type='time' class='form-control' name='eventEnd' id='eventEnd' />
 		   </div>
 		</div>
 		<div class="form-group">
