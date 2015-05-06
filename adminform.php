@@ -196,7 +196,12 @@
 					f2.value = cells[2].innerHTML;
 					f3.value = cells[3].innerHTML;
 					f4.value = cells[4].innerHTML;
-					f5.value = space.concat(cells[5].innerHTML);
+					if (cells[5].innerHTML == 'Accounting'){
+						f5.value = cells[5].innerHTML;
+					}
+					else{
+						f5.value = space.concat(cells[5].innerHTML);
+					}
 					f6.value = cells[6].innerHTML;
 					f7.value = cells[7].innerHTML;
 					};
