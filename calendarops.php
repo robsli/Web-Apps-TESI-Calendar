@@ -112,13 +112,15 @@ function displayEventsHome ($order) {
 			$newtime = $eventdate->format("g") . ":" . $eventdate->format('i') . " " . $eventdate->format('A');
 			$newDate = $eventdate->format('l, M j  |  g:i A');
 
+
+			createModal($event->summary, $event->description, $count);
 			echo "<h4><a href= $TZlink>" . $event->summary . "</a></h4>";
 			echo "<h6><b>" . $newDate . "</b></h6>";
 			echo "<h6>" . $event->location . "</h6>";
 			echo "<br>";
-			echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#modal" . $count . "'>Learn More</button>";
+			echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#modal".$count."'>Learn More</button>";
 			echo "<br><br>";
-			createModal($event->summary, $event->description, $count);
+			
 			if(isset($_SESSION['firstname']))
 				echo "<button type='button' class='btn btn-primary'>RSVP</button>";
 			else 
@@ -145,19 +147,26 @@ function collapse ($description) {
 
 function createModal($title, $description, $count) {
 ?>
+
+
+<!------------------------------------!>
 	<!-- Modal 1 -->
-	<div id="modal<?php $count ?>" class="modal fade" role="dialog">
+    <?php
+    echo "<div id='modal".$count."' class='modal fade' role='dialog'>"; 
+
+    ?>
+	
 	<div class="modal-dialog">
 
 	<!-- Modal content-->
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h4 class="modal-title"><?php $title ?></h4>
+			<h4 class="modal-title"><?php echo $title; ?></h4>
 		</div>
 		<div class="modal-body">
-			<img src="images/mit_logo.png" class="img-responsive" alt="mit_logo"/>
-			<p><?php $description ?></p>
+			<!--<img src="images/mit_logo.png" class="img-responsive" alt="mit_logo"/>--!>
+			<p><?php echo $description; ?></p>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
