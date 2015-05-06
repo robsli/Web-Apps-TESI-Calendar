@@ -106,7 +106,7 @@ function addEvent($summary, $location, $startTime, $endTime, $description) {
 }
 
 function insertEvent($title, $location, $org, $date, $start, $end, $eventId) {
-	$dbc = connecttoDB("lifm", "qmJriism", "lifm");
+	$dbc = connectToDB("lifm", "qmJriism", "lifm");
 	$query = "insert into TESI_EVENTS values (DEFAULT, '$title', '$location', '$org', '$date', '$start', '$end', '$eventId')";
 	$results = mysqli_query($dbc, $query);
 } 

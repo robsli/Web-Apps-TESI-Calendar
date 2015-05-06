@@ -44,12 +44,11 @@ function displayEvents ($number) {
 		$eventdate->setTimezone(new DateTimeZone('America/New_York'));
 		$link = $event->htmlLink;
 		$TZlink = $link . "&ctz=";
-		
+
 		$newmonth = $eventdate->format("M");//CONVERT REGULAR EVENT DATE TO LEGIBLE MONTH
 		$newday = $eventdate->format("j");//CONVERT REGULAR EVENT DATE TO LEGIBLE DAY
 		$newDate = $eventdate->format('l, M j  |  g:i A');
-		
-		
+
 		echo "<h2><a href= $TZlink>" . $event->summary . "</a></h2>";
 		echo "<h4>" . $newDate . "</h4>";
 		echo "<h5>" . $event->location . "</h5>";
@@ -57,7 +56,10 @@ function displayEvents ($number) {
 		collapse($event->description, $idNum);
 		echo "<br><br>";
 		if(isset($_SESSION['firstname']))
-			echo "<button type='button' class='btn btn-primary'>RSVP</button>";
+				echo "<form type='post' action='rsvp.php'>
+						<button type='submit' class='btn btn-primary'>RSVP</button>
+						<input type='hidden' name='gcalid' value='".$event->getId()."'/>
+					  </form>";
 		else 
 			echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#loginModal'>Log In to RSVP</button>";
 
@@ -123,15 +125,76 @@ function displayEventsHome ($order) {
 			echo "<br>";
 			echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#modal".$count."'>Learn More</button>";
 			echo "<br><br>";
-			
+
 			if(isset($_SESSION['firstname']))
-				echo "<button type='button' class='btn btn-primary'>RSVP</button>";
+				echo "<form method='post' action='rsvp.php'>
+						<button type='submit' class='btn btn-primary'>RSVP</button>
+						<input type='hidden' name='gcalid' value='".$event->getId()."'/>
+					  </form>";
 			else 
 				echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#loginModal'>Log In to RSVP</button>";
 			echo "<hr>";
 		}
 		$count ++;
 	}
+}
+
+function updateEvent($summary, $location, $startTime, $endTime, $eventID, $description) {
+	
+	//Set default timezone
+	date_default_timezone_set('America/New_York');
+
+	//Setup credentials
+	$client_id = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b.apps.googleusercontent.com';
+	$service_email = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b@developer.gserviceaccount.com';
+	$keyFileLocation = 'TESI Calendar-1ab97ed7c865.p12';
+	$client = new Google_Client();
+	$client->setApplicationName("TESI Calendar");
+	$key = file_get_contents($keyFileLocation);
+	$scopes = "https://www.googleapis.com/auth/calendar";
+	$cred = new Google_Auth_AssertionCredentials(
+		$service_email,
+		array($scopes),
+		$key);
+	$client->setAssertionCredentials($cred);
+	if($client->getAuth()->isAccessTokenExpired()) {	 	
+		$client->getAuth()->refreshTokenWithAssertion($cred);	 	
+	}	 	
+
+	$scope = new Google_Service_Calendar_AclRuleScope();
+	$scope->setType('user');
+	$scope->setValue( 'tesicalendar2015@gmail.com' );
+
+	$rule = new Google_Service_Calendar_AclRule();
+	$rule->setRole( 'owner' );
+	$rule->setScope( $scope );
+
+	$service = new Google_Service_Calendar($client);  
+	$result = $service->acl->insert('primary', $rule);
+	
+	// Update Google Event
+	$event = $service->events->get('primary', "$eventID");
+	
+	$event->setSummary($summary);
+	$event->setLocation($location);
+	$event->setDescription($description);
+	
+	$start = new Google_Service_Calendar_EventDateTime();
+	$start->setDateTime($startTime);
+	$start->setTimeZone('America/New_York');
+	$event->setStart($start);
+	
+	$end = new Google_Service_Calendar_EventDateTime();
+	$end->setDateTime($endTime);
+	$end->setTimeZone('America/New_York');
+	$event->setEnd($end);
+
+	$createdEvent = $service->events->update("primary", $event->getId(), $event);
+}
+
+function formatDate($date, $time) {
+	$result = $date . "T" . $time . ":00.000";
+	return $result;
 }
 
 function collapse($description, $idNum) {
