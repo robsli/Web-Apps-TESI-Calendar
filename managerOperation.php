@@ -32,13 +32,13 @@
 	mysqli_free_result($selectResult);
 	
 	if ($rows){
-		$updateQuery = "UPDATE TESI_EVENTS SET club='$club', title='$title',
-		location='$location', dateofvisit='$date', starttime='$starttime', endtime='$endtime'
+		$updateQuery = "UPDATE TESI_EVENTS SET club=\"$club\", title=\"$title\",
+		location=\"$location\", dateofvisit='$date', starttime='$starttime', endtime='$endtime'
 		WHERE ID='$ID'";
 		
 		$updateResult = mysqli_query($dbc, $updateQuery);
-		$startTime = formatDate($date, $starttime);
-		$endTime = formatDate($date, $endtime);
+		$startTime = formatDateUpdate($date, $starttime);
+		$endTime = formatDateUpdate($date, $endtime);
 		updateEvent($title, $location, $startTime, $endTime, $eventID, $description);
 	}
 	mysqli_close($dbc);	

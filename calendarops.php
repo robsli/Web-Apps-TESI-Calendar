@@ -197,6 +197,11 @@ function formatDate($date, $time) {
 	return $result;
 }
 
+function formatDateUpdate($date, $time) {
+	$result = $date . "T" . $time . ".000";
+	return $result;
+}
+
 function collapse($description, $idNum) {
 
     echo "<a color='@link-color' data-toggle='collapse' href='#collapse".$idNum."' aria-expanded='false' aria-controls='collapse".$idNum."'>";
