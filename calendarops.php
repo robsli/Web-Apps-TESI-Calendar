@@ -131,6 +131,58 @@ function displayEventsHome ($order) {
 	}
 }
 
+function updateEvent($summary, $location, $startTime, $endTime, $eventID) {
+	
+	//Set default timezone
+	date_default_timezone_set('America/New_York');
+
+	//Setup credentials
+	$client_id = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b.apps.googleusercontent.com';
+	$service_email = '1078446578164-dileq5pq82es6m6jg0aujucn1t9cll2b@developer.gserviceaccount.com';
+	$keyFileLocation = 'TESI Calendar-1ab97ed7c865.p12';
+	$client = new Google_Client();
+	$client->setApplicationName("TESI Calendar");
+	$key = file_get_contents($keyFileLocation);
+	$scopes = "https://www.googleapis.com/auth/calendar";
+	$cred = new Google_Auth_AssertionCredentials(
+		$service_email,
+		array($scopes),
+		$key);
+	$client->setAssertionCredentials($cred);
+	if($client->getAuth()->isAccessTokenExpired()) {	 	
+		$client->getAuth()->refreshTokenWithAssertion($cred);	 	
+	}	 	
+
+	$scope = new Google_Service_Calendar_AclRuleScope();
+	$scope->setType('user');
+	$scope->setValue( 'tesicalendar2015@gmail.com' );
+
+	$rule = new Google_Service_Calendar_AclRule();
+	$rule->setRole( 'owner' );
+	$rule->setScope( $scope );
+
+	$service = new Google_Service_Calendar($client);  
+	$result = $service->acl->insert('primary', $rule);
+	
+	// Update Google Event
+	$event = $service->events->get('primary', "$eventID");
+	
+	$event->setSummary($summary);
+	$event->setLocation($location);
+	
+	$start = new Google_Service_Calendar_EventDateTime();
+	$start->setDateTime($startTime);
+	$start->setTimeZone('America/New_York');
+	$event->setStart($start);
+	
+	$end = new Google_Service_Calendar_EventDateTime();
+	$end->setDateTime($endTime);
+	$end->setTimeZone('America/New_York');
+	$event->setEnd($end);
+
+	$createdEvent = $service->events->update("primary", $event->getId(), $event);
+}
+
 function collapse ($description) {
 ?>
 	<a color="@link-color" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

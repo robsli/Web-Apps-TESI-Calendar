@@ -19,6 +19,7 @@
 <?php
 		
 	include ('navbar.php');
+	include ('dboperation.php');
 	displayNavbar();
 	
 	$dbc = connecttoDB("lifm", "qmJriism", "lifm");
@@ -134,11 +135,6 @@
 </html>
 
 <?php
-function connectToDB($user, $pw, $dbname){
-		$dbc = @mysqli_connect("localhost", $user, $pw, $dbname) 
-		OR die("Could not connect to MySQL on cscilab: ".	mysqli_connect_error());
-		return $dbc;
-}
 
 function textInput($name,$display,$type){
 	$error = $name . "error";

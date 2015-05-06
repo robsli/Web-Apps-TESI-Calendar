@@ -10,6 +10,9 @@
 
 <body>
 <?php		
+	include ('dboperation.php');
+	include ('calendarops.php');
+	
 	$dbc = connecttoDB("lifm", "qmJriism", "lifm");
 	if ( isset($_POST['changerecord']) ){
 		$ID = $_POST['ID'];
@@ -19,6 +22,7 @@
 		$date = $_POST['date'];
 		$starttime = $_POST['starttime'];
 		$endtime = $_POST['endtime'];
+		$eventID = $_POST['eventID'];
 	}
 	
 	$selectQuery = "SELECT* FROM TESI_EVENTS where ID = '$ID'";
@@ -32,6 +36,7 @@
 		WHERE ID='$ID'";
 		
 		$updateResult = mysqli_query($dbc, $updateQuery);
+		updateEvent($summary, $location, $startTime, $endTime, $ID);
 	}
 	mysqli_close($dbc);	
 	?>
