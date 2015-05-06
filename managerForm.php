@@ -50,7 +50,7 @@
 	}
 	echo "</table></div><br>"; ?>
 
-	<form class="form-horizontal" role="form" method = "post" action="managerOperation.php">
+	<form class="form-horizontal" role="form" id="managerForm" method="post" action="managerOperation.php">
 		<input type="hidden" name="ID" id="ID"/>
 		<input type="hidden" name="eventID" id="eventID"/>
 		
@@ -75,8 +75,13 @@
 		textInput("location","Location",'text'); 
 		textInput("date","Date",'date'); 
 		textInput("starttime","Start Time",'time'); 
-		textInput("endtime","End Time",'time'); 
-		?>
+		textInput("endtime","End Time",'time'); ?>
+		<div class="form-group">
+			<label class='control-label col-sm-3' for=$name>Description</label>
+			<div class='col-sm-6'>
+				<textarea rows="4" cols="50" name="description" form="managerForm"></textarea>
+			</div>
+		</div>
     
 		<div class="col-sm-offset-3 col-sm-10">
      		<input class="btn btn-default" type = "reset" name = 'reset' value  = 'Reset'/>

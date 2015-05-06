@@ -23,6 +23,7 @@
 		$starttime = $_POST['starttime'];
 		$endtime = $_POST['endtime'];
 		$eventID = $_POST['eventID'];
+		$description =  $_POST['description'];
 	}
 	
 	$selectQuery = "SELECT* FROM TESI_EVENTS where ID = '$ID'";
@@ -36,9 +37,7 @@
 		WHERE ID='$ID'";
 		
 		$updateResult = mysqli_query($dbc, $updateQuery);
-		$startTime = formatDate($date, $starttime);
-		$endTime = formatDate($date, $endtime);
-		updateEvent($title, $location, $startTime, $endTime, $eventID);
+		updateEvent($summary, $location, $startTime, $endTime, $ID);
 	}
 	mysqli_close($dbc);	
 	?>
@@ -54,4 +53,9 @@ function returnHome(){
 function goBack(){
 	echo"<button type='button' onclick='history.back();'>Try Again</button><br><br>";
 }
-?>
+
+function connectToDB($user, $pw, $dbname){
+		$dbc = @mysqli_connect("localhost", $user, $pw, $dbname) 
+		OR die("Could not connect to MySQL on cscilab: ".	mysqli_connect_error());
+		return $dbc;
+}
