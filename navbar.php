@@ -26,11 +26,13 @@ function displayNavbar() {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";
 						echo "<li><a href='managerForm.php'>Manage Events</a></li>";
 						echo "<li><a href='adminform.php'>Manage Users</a></li>";
+						echo "<li><a href='memberPage.php'>Member Page</a></li>";
 					} else if (isset($_SESSION['firstname']) AND ($type == 'manager')) {
 						echo "<li><a href='addEventForm.php'>Add Event</a></li>";
 						echo "<li><a href='#'>Manage Events</a></li>";
+						echo "<li><a href='memberPage.php'>Member Page</a></li>";
 					} else if (isset($_SESSION['firstname'])) {
-						echo "<li><a href='#'>Member Page</a></li>";
+						echo "<li><a href='memberPage.php'>Member Page</a></li>";
 					} else 
 						echo "<li><a href='joinform.php'>Sign Up</a></li>";
 					?>	
