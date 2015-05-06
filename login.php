@@ -36,19 +36,21 @@ function handleLoginForm(){
 		$query = "SELECT * from TESI_MEMBERSHIP where email = '$login' AND PASSWORD = '$pw'"; 
 		$result = performQuery($dbc, $query);
 	    if (mysqli_num_rows($result) == 1) {
-     		 $row = mysqli_fetch_assoc($result);
-     		 $email = $row['email'];
-     		 $firstname = $row['firstname'];
-			 $type = $row['membershiptype'];
+     		$row = mysqli_fetch_assoc($result);
+     		$email = $row['email'];
+     		$firstname = $row['firstname'];
+			$type = $row['membershiptype'];
+			$id = $row['ID'];
      		 
-			 session_start();
-      		 //Store the email in the session
-      		 $_SESSION['userlogin'] = $email;
+			session_start();
+      		//Store the email in the session
+      		$_SESSION['userlogin'] = $email;
       		 
-      		 //Store the name in the session.
-      		 $_SESSION['firstname'] = $firstname;
+      		//Store the name in the session.
+      		$_SESSION['firstname'] = $firstname;
 			 
-			 $_SESSION['memtype'] = $type;
+			$_SESSION['memtype'] = $type;
+			$_SESSION['id'] = $id;
       		 
       		header("Location: index.php");
          }

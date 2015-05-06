@@ -46,7 +46,6 @@ function rsvp($id, $calid) {
 	$checkQuery = "select * from TESI_ATTENDANCE where memberID = $id and eventID = $eventID";
 	$checkResults = mysqli_query($dbc, $checkQuery);
 	$checkRows = mysqli_num_rows($checkResults);
-	echo "Rows: ". $checkRows;
 	
 	if ($checkRows == 0) {
 		$query = "insert into TESI_ATTENDANCE values (DEFAULT, $id, $eventID, 'a', sysdate())";

@@ -56,7 +56,7 @@ function displayEvents ($number) {
 		collapse($event->description, $idNum);
 		echo "<br><br>";
 		if(isset($_SESSION['firstname']))
-				echo "<form type='post' action='rsvp.php'>
+				echo "<form method='post' action='rsvp.php'>
 						<button type='submit' class='btn btn-primary'>RSVP</button>
 						<input type='hidden' name='gcalid' value='".$event->getId()."'/>
 					  </form>";
