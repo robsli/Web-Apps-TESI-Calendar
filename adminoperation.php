@@ -1,3 +1,6 @@
+<?php
+	header('Location: adminform.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,15 +41,6 @@
 		//$trimResult = mysqli_query($dbc, $trimQuery);
 
 		$updateResult = mysqli_query($dbc, $updateQuery);
-		
-		if ($updateResult){
-			returnHome();
-			echo "Record was edited. Thank you!";
-		}
-		else{
-			goBack();
-			die('Invalid query: $updateQuery'. mysqli_error($dbc));
-		}	
 	}
 	mysqli_close($dbc);	
 	?>
@@ -54,15 +48,6 @@
 </html>
 
 <?php
-function returnHome(){
-	echo" <form action='index.php'>
-	<input type='submit' value='Home'></form><br>";
-}
-
-function goBack(){
-	echo"<button type='button' onclick='history.back();'>Try Again</button><br><br>";
-}
-
 function connectToDB($user, $pw, $dbname){
 		$dbc = @mysqli_connect("localhost", $user, $pw, $dbname) 
 		OR die("Could not connect to MySQL on cscilab: ".	mysqli_connect_error());
