@@ -30,7 +30,7 @@
 
 		$id = isset($_SESSION['id'])?$_SESSION['id']:"error: not logged in";
 		$name = isset($_SESSION['firstname'])?$_SESSION['firstname']:"error: not logged in";
-		echo "<h2>Hello $name! This is your profile page</h2>
+		echo "<h2>$name's Profile Page</h2>
 		<br>
 		<h4>Account Settings</h4>";
 		
@@ -57,12 +57,14 @@
      		 $major = $row['major'];
 			 $type = $row['membershiptype'];
 			 
-			 echo "Name: $firstname $lastname<br>";
-			 echo "Member Since: $date<br>";
-			 echo "School: $school<br>";
-			 echo "Class: $class<br>";
-			 echo "Major: $major<br>";
-			 echo "Membership Type: $type<br>";
+			echo "<table id='profile' class='table'>";
+			 echo "<tr><td><b>Name </b></td><td>$firstname $lastname</td></tr>";
+			 echo "<tr><td><b>Member Since </b></td><td>$date</td></tr>";
+			 echo "<tr><td><b>School </b></td><td>$school</td></tr>";
+			 echo "<tr><td><b>Class </b></td><td>$class</td></tr>";
+			 echo "<tr><td><b>Major </b></td><td>$major</td></tr>";
+			 echo "<tr><td><b>Membership Type </b></td><td>$type</td></tr>";
+			echo "</table>";
 		}
 
 	?>
@@ -76,7 +78,7 @@
 					and memberID = $id
 					order by 3 asc";
 		$result2 = mysqli_query($dbc, $query2);
-		echo "<table id = 'managerTable' class='table table-striped'>";
+		echo "<table id = 'eventsAttending' class='table table-striped'>";
 		echo"<tr>
 			<th>Event</th>
 			<th>Location</th>
